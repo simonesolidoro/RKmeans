@@ -28,8 +28,8 @@ int main() {
   std::vector<std::string> curve_types = {
       "Funzione_test"}; 
 
-  std::string output_dir = "../output/";
-  std::string data_dir = "../../data/";
+  std::string output_dir = "./output/";
+  std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
     fs::remove_all(output_dir);
@@ -51,7 +51,7 @@ int main() {
   // read parameters from generation log:
   LogParams params;
   try {
-    params = parse_log_scalars("../../data/gen_log_st.txt");
+    params = parse_log_scalars("./../data/gen_log_st.txt");
     std::cout << "n_obs_per_clust: " << params.n_obs_per_clust << "\n";
     file_log << "n_obs_per_clust: " << params.n_obs_per_clust << "\n";
     std::cout << "n_clust:         " << params.n_clust << "\n";
@@ -108,36 +108,36 @@ int main() {
   }
 
   // create output directories
-//std::cout<<"C1"<<std::endl; 
-  for (std::string_view dir1 : {"2d_st", "3d_st"})
+std::cout<<"create griglie gcv"<<std::endl; 
+  for (std::string_view dir1 : {"2d_st_reg", "3d_st_reg","2d_st_Noreg", "3d_st_Noreg"})
     for (std::string_view dir2 : curve_types)
       fs::create_directories(fs::path(output_dir) / dir1 / dir2);
-//std::cout<<"C2"<<std::endl; 
+std::cout<<"create directory per output"<<std::endl; 
 
   auto t1 = high_resolution_clock::now();
   auto t2 = high_resolution_clock::now();
   duration<double> elapsed_time = t2 - t1;
 
   // read nodes, cells and boudaries from csv files:
-  Eigen::MatrixXd nodes_2d = csv2mat<double>("../../data/2d/nodes.csv");
-  Eigen::MatrixXd nodes_3d = csv2mat<double>("../../data/3d/nodes.csv");
+  Eigen::MatrixXd nodes_2d = csv2mat<double>("./../data/2d/nodes.csv");
+  Eigen::MatrixXd nodes_3d = csv2mat<double>("./../data/3d/nodes.csv");
 //std::cout<<"C3"<<std::endl; 
-  Eigen::MatrixXi cells_2d = csv2mat<int>("../../data/2d/cells.csv");
-  Eigen::MatrixXi cells_3d = csv2mat<int>("../../data/3d/cells.csv");
+  Eigen::MatrixXi cells_2d = csv2mat<int>("./../data/2d/cells.csv");
+  Eigen::MatrixXi cells_3d = csv2mat<int>("./../data/3d/cells.csv");
 //std::cout<<"C4"<<std::endl; 
 
-  Eigen::MatrixXi boundary_nodes_2d = csv2mat<int>("../../data/2d/boundary_nodes.csv");
-  Eigen::MatrixXi boundary_nodes_3d = csv2mat<int>("../../data/3d/boundary_nodes.csv");
+  Eigen::MatrixXi boundary_nodes_2d = csv2mat<int>("./../data/2d/boundary_nodes.csv");
+  Eigen::MatrixXi boundary_nodes_3d = csv2mat<int>("./../data/3d/boundary_nodes.csv");
 //std::cout<<"C5"<<std::endl; 
 
   Triangulation<2, 2> D2(nodes_2d, cells_2d, boundary_nodes_2d);
   Triangulation<3, 3> D3(nodes_3d, cells_3d, boundary_nodes_3d);
 //std::cout<<"C6"<<std::endl; 
-  Eigen::MatrixXd istanti = csv2mat<double>("../../data/istanti_t.csv");
+  Eigen::MatrixXd istanti = csv2mat<double>("./../data/istanti_t.csv");
 std::cout<<istanti.rows()<<" "<<istanti.cols()<<std::endl;
   Triangulation<1, 1> T(istanti);
   // PHYSICS
-//std::cout<<"C7"<<std::endl; 
+std::cout<<"caricati dati "<<std::endl; 
   // 2D
   FeSpace Vh_2d(D2, P1<1>);
   TrialFunction f_2d(Vh_2d);
@@ -181,6 +181,8 @@ std::cout<<istanti.rows()<<" "<<istanti.cols()<<std::endl;
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   L2Policy dist_2d(K0_2d);
   L2Policy dist_3d(K0_3d);
+  L2Policy_st_ap dist_2d_noreg(R0_2d,R0_2d.rows(),Rt.rows());
+  L2Policy_st_ap dist_3d_noreg(R0_3d,R0_3d.rows(),Rt.rows());
   // L2Policy_spaziotempo dist_2d(K0_2d,R0_2d.rows(),Rt.rows());
   // L2Policy_spaziotempo dist_3d(K0_3d,R0_3d.rows(),Rt.rows());
   // KppPolicy init_2d(dist_2d);
@@ -196,8 +198,9 @@ std::cout<<istanti.rows()<<" "<<istanti.cols()<<std::endl;
 
   // CLUSTERING
 
-//std::cout<<"iniziamo"<<std::endl; 
-  for (auto &dir1 : {"2d_st", "3d_st"}) { //, "3d_st" per ora solo 2d
+std::cout<<"creati spazi, dist and init"<<std::endl;
+/*
+  for (auto &dir1 : {"2d_st_reg"}) { //, "3d_st_reg" per ora solo 2d
     for (unsigned n = 0; n < N; ++n) {
 //std::cout<<"crea file mem centr"<<std::endl; 
       std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
@@ -210,14 +213,15 @@ std::cout<<istanti.rows()<<" "<<istanti.cols()<<std::endl;
       }
       file_memb.close();
       file_cent.close();
-//std::cout<<"carica resp"<<std::endl; 
-      std::string resp_file = std::string("../../data/") + dir1 + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      
+      std::string dirdata = (dir1 == "2d_st_reg")? "2d_st":"3d_st";
+      std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
       Eigen::MatrixXd responses = csv2mat<double>(resp_file);
       Eigen::MatrixXd responses_smooth(responses.rows(),responses.cols());
 
       t1 = high_resolution_clock::now();
       //presmoothing 
-      if(dir1 == "2d_st"){
+      if(dir1 == "2d_st_reg"){
 //std::cout<<"smoothing resp"<<std::endl; 
         for (int s=0 ; s< responses.rows(); s++){
 //std::cout<<"smooth s:"<<s<<std::endl;
@@ -239,7 +243,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
           responses_smooth.row(s)= model.f();
         }
       }
-      if(dir1 == "3d_st"){
+      if(dir1 == "3d_st_reg"){
         for (int s=0 ; s< responses.rows(); s++){
           // load data in geoframe
           GeoFrame data(D3, T);
@@ -262,7 +266,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       Eigen::MatrixXd temp_centroids;
 
     
-      if (dir1 == "2d_st") {
+      if (dir1 == "2d_st_reg") {
         // RKMeans
         // RKMeans_st_parallel_gcv rkmeans(dist_2d, init_manual, D2,T,
         //                 fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses_smooth, k,
@@ -276,13 +280,11 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
         temp_memb = rkmeans.memberships();
         temp_centroids = rkmeans.centroids();
       }
-      if (dir1 == "3d_st") {
+      if (dir1 == "3d_st_reg") {
         // RKMeans
-        RKMeans_st_parallel_gcv rkmeans(dist_3d, init_manual, D3,T,
-                        fe_ls_separable_mono(std::pair {a_3d, F_3d}, std::pair {a_T, F_T}), responses_smooth, k,
+        KMeans rkmeans(responses_smooth, dist_3d, init_manual,k,
                         max_iter, seed);
-        rkmeans.set_gcv_grid(lambda_3d);
-        rkmeans.run(lambda);
+        rkmeans.run();
         n_iter = rkmeans.n_iterations();
         temp_memb = rkmeans.memberships();
         temp_centroids = rkmeans.centroids();
@@ -297,6 +299,79 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       ss << dir1 << "/" << curve_types[0] << "_" << n << ": "
           << kmeans_type << " execution completed in " << n_iter
           << " iterations (max=" << max_iter << "), time (pre-smooth+kmeans):" << elapsed_time;
+      std::string msg = ss.str();
+      std::cout << msg << std::endl;
+      file_log << msg << std::endl;
+
+      Eigen::Map<const Eigen::RowVectorXi> temp_row_view(temp_memb.data(),
+                                                          temp_memb.size());
+      // append_mat2csv(temp_row_view, out_memb_file);
+      // append_mat2csv(temp_centroids, out_cent_file);
+      mat2csv(temp_row_view, out_memb_file);
+      mat2csv(temp_centroids, out_cent_file);
+    }
+  }
+*/
+  for (auto &dir1 : {"2d_st_Noreg"}) { //, "3d_st_Noreg" per ora solo 2d
+    for (unsigned n = 0; n < N; ++n) {
+//std::cout<<"crea file mem centr"<<std::endl; 
+      std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
+      std::string out_cent_file = output_dir + dir1 + "/" + curve_types[0] + "/centroids"+ "_" + std::to_string(n) + ".csv";
+      std::ofstream file_memb(out_memb_file);
+      std::ofstream file_cent(out_cent_file);
+      if (!file_memb.is_open() || !file_cent.is_open()) {
+        std::cerr << "Error opening file: " << out_memb_file << " or " << out_cent_file << std::endl;
+        return 1;
+      }
+      file_memb.close();
+      file_cent.close();
+      
+      std::string dirdata = (dir1 == "2d_st_Noreg")? "2d_st":"3d_st";
+      std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      Eigen::MatrixXd responses = csv2mat<double>(resp_file);
+      std::cout<<"caricata resp in Noreg"<<std::endl;
+      t1 = high_resolution_clock::now();
+      
+      unsigned n_iter;
+      std::vector<int> temp_memb;
+      Eigen::MatrixXd temp_centroids;
+
+    
+      if (dir1 == "2d_st_Noreg") {
+	std::cout<<" dentro if di 2d_st_Noreg"<<std::endl;
+        // RKMeans
+        // RKMeans_st_parallel_gcv rkmeans(dist_2d, init_manual, D2,T,
+        //                 fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses_smooth, k,
+        //                 max_iter, seed);
+        KMeans rkmeans(responses,dist_2d_noreg, init_manual, k,
+                        max_iter, seed);
+        //rkmeans.set_gcv_grid(lambda_2d);
+        // rkmeans.run(lambda);
+std::cout<<"creato kmeans "<<std::endl;
+        rkmeans.run();
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+      if (dir1 == "3d_st_Noreg") {
+        // RKMeans
+        KMeans rkmeans(responses, dist_3d_noreg, init_manual,k,
+                        max_iter, seed);
+        rkmeans.run();
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+
+
+      t2 = high_resolution_clock::now();
+      elapsed_time = duration_cast<duration<double>>(t2 - t1);
+
+      std::string kmeans_type = "kmeans";
+      std::ostringstream ss;
+      ss << dir1 << "/" << curve_types[0] << "_" << n << ": "
+          << kmeans_type << " execution completed in " << n_iter
+          << " iterations (max=" << max_iter << "), time (kmeans, no presmooth quindi distnza AP no Kron):" << elapsed_time;
       std::string msg = ss.str();
       std::cout << msg << std::endl;
       file_log << msg << std::endl;

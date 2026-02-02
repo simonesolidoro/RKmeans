@@ -55,6 +55,41 @@ struct L2Policy_spaziotempo {
   }
 };
 
+
+
+// d(f,g) = somma combinazioni f_t e g_i con i da 0 a m e f_ie g_t (f_t-g_t)^T R0 (f_t-g_t))
+struct L2Policy_st_ap {
+  Eigen::SparseMatrix<double> R0_;
+  int nodi_spazio;
+  int nodi_tempo;
+
+  L2Policy_st_ap(const Eigen::SparseMatrix<double> &R0, int ns, int nt)
+      : R0_(R0), nodi_spazio(ns), nodi_tempo(nt) {
+    if (R0_.rows() != R0_.cols()) {
+      throw std::runtime_error("R0 must be a square matrix!");
+    }
+  }
+
+  template <typename T1, typename T2>
+  double operator()(const Eigen::MatrixBase<T1> &f,
+                    const Eigen::MatrixBase<T2> &g) const {
+    double distanza = 0.0;
+
+    for (int t = 0; t < nodi_tempo; ++t) {
+      auto f_t = f.segment(t * nodi_spazio, nodi_spazio);
+      for(int tt= 0; tt< nodi_tempo; tt++){
+        auto g_t = g.segment(tt * nodi_spazio, nodi_spazio);
+
+        Eigen::VectorXd diff = f_t - g_t;
+        double squared_norm = diff.transpose() * (R0_ * diff);
+        distanza += squared_norm;
+      }
+    }
+
+    return distanza; // manca *T ma tanto sarebbe distanze equivalente
+  }
+};
+
 // d(f,g) = sqrt((f-g)^T R0 (f-g)) / ( sqrt(f^T R0 f) + sqrt(g^T R0 g) )
 struct L2NormalizedPolicy {
   Eigen::SparseMatrix<double> R0_;

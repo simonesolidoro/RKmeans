@@ -1,5 +1,5 @@
 function:         Funzione_test
-combination:      
+combination:      001122
 n_obs_per_clust:  30
 n_clust:          3
 N:                2

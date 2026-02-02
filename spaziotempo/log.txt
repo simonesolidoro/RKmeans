@@ -1,0 +1,18 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 4
+n_clust:         2
+N:               2
+seed:            42
+create griglie gcv
+create directory per output
+10 1
+caricati dati 
+creati spazi, dist and init
+caricata resp in Noreg
+ dentro if di 2d_st_Noreg
+creato kmeans 

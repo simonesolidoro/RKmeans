@@ -28,15 +28,15 @@ int main() {
   std::vector<std::string> curve_types = {
       "Funzione_test"}; 
 
-  std::string output_dir = "../output/";
-  std::string data_dir = "../data/";
+  std::string output_dir = "./output/";
+  std::string data_dir = "./data/";
 
   if (fs::exists(output_dir)) {
     fs::remove_all(output_dir);
   }
   fs::create_directory(output_dir);
 
-  std::ofstream file_log(output_dir + "log.txt");
+  std::ofstream file_log(output_dir + "log_interno.txt");
   if (!file_log.is_open()) {
     std::cerr << "Error opening log file." << std::endl;
     return 1;
@@ -51,7 +51,7 @@ int main() {
   // read parameters from generation log:
   LogParams params;
   try {
-    params = parse_log_scalars("../data/gen_log.txt");
+    params = parse_log_scalars("./data/gen_log.txt");
     std::cout << "n_obs_per_clust: " << params.n_obs_per_clust << "\n";
     file_log << "n_obs_per_clust: " << params.n_obs_per_clust << "\n";
     std::cout << "n_clust:         " << params.n_clust << "\n";
@@ -87,11 +87,11 @@ int main() {
 
   lambda_2d.resize(16);
   for (std::size_t i = 0; i < lambda_2d.size(); ++i)
-    lambda_2d[i] = std::pow(10, -10 + i * 0.25);
+    lambda_2d[i] = std::pow(10, -12 + i * 0.25);
 
   lambda_3d.resize(8);
   for (std::size_t i = 0; i < lambda_3d.size(); ++i)
-    lambda_3d[i] = std::pow(10, -8 + i * 0.25);
+    lambda_3d[i] = std::pow(10, -12 + i * 0.25);
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -109,26 +109,26 @@ int main() {
     for (std::string_view dir2 : curve_types)
       fs::create_directories(fs::path(output_dir) / dir1 / dir2);
 
-
+  std::cout<<"create directori 2/3d_Noreg/reg"<<std::endl;
   auto t1 = high_resolution_clock::now();
   auto t2 = high_resolution_clock::now();
   duration<double> elapsed_time = t2 - t1;
 
   // read nodes, cells and boudaries from csv files:
-  Eigen::MatrixXd nodes_2d = csv2mat<double>("../data/2d/nodes.csv");
-  Eigen::MatrixXd nodes_3d = csv2mat<double>("../data/3d/nodes.csv");
+  Eigen::MatrixXd nodes_2d = csv2mat<double>("./data/2d/nodes.csv");
+  Eigen::MatrixXd nodes_3d = csv2mat<double>("./data/3d/nodes.csv");
 
-  Eigen::MatrixXi cells_2d = csv2mat<int>("../data/2d/cells.csv");
-  Eigen::MatrixXi cells_3d = csv2mat<int>("../data/3d/cells.csv");
+  Eigen::MatrixXi cells_2d = csv2mat<int>("./data/2d/cells.csv");
+  Eigen::MatrixXi cells_3d = csv2mat<int>("./data/3d/cells.csv");
 
 
-  Eigen::MatrixXi boundary_nodes_2d = csv2mat<int>("../data/2d/boundary_nodes.csv");
-  Eigen::MatrixXi boundary_nodes_3d = csv2mat<int>("../data/3d/boundary_nodes.csv");
+  Eigen::MatrixXi boundary_nodes_2d = csv2mat<int>("./data/2d/boundary_nodes.csv");
+  Eigen::MatrixXi boundary_nodes_3d = csv2mat<int>("./data/3d/boundary_nodes.csv");
 
 
   Triangulation<2, 2> D2(nodes_2d, cells_2d, boundary_nodes_2d);
   Triangulation<3, 3> D3(nodes_3d, cells_3d, boundary_nodes_3d);
-
+  std::cout<<"letti nodi e celle e create triangolazioni"<<std::endl;
   // PHYSICS
 
   // 2D
@@ -171,7 +171,7 @@ int main() {
   ManualInitPolicy init_manual(manual_ids);
 
   std::size_t n_obs = n_obs_per_clust * k;
-
+  std::cout<<"creati spazi e dist e init"<<std::endl;
   // CLUSTERING
 
   
@@ -189,7 +189,8 @@ int main() {
       file_memb.close();
       file_cent.close();
       
-      std::string resp_file = std::string("../data/") + dir1 + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      std::string dirdata = (dir1=="2d_reg")? "2d":"3d";
+      std::string resp_file = std::string("./data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
       Eigen::MatrixXd responses = csv2mat<double>(resp_file);
 
       t1 = high_resolution_clock::now();
@@ -243,8 +244,8 @@ int main() {
     }
   }
 
-
-  for (auto &dir1 : {"2d_Noreg", "3d_NOreg"}) {
+  std::cout<<"test kmeans reg conclusi"<<std::endl;
+  for (auto &dir1 : {"2d_Noreg", "3d_Noreg"}) {
     for (unsigned n = 0; n < N; ++n) {
       unsigned n_nodes = (dir1 == "2d_Noreg") ? nodes_2d.rows() : nodes_3d.rows();
       std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
@@ -258,7 +259,8 @@ int main() {
       file_memb.close();
       file_cent.close();
       
-      std::string resp_file = std::string("../data/") + dir1 + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      std::string dirdata = (dir1=="2d_Noreg")? "2d":"3d";
+      std::string resp_file = std::string("./data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
       Eigen::MatrixXd responses = csv2mat<double>(resp_file);
 
       t1 = high_resolution_clock::now();
@@ -280,7 +282,7 @@ int main() {
         // RKMeans
         KMeans kmeans( responses,dist_3d, init_manual, k,
                         max_iter, seed);
-        kmeans.run(lambda);
+        kmeans.run();
         n_iter = kmeans.n_iterations();
         temp_memb = kmeans.memberships();
         temp_centroids = kmeans.centroids();
@@ -307,7 +309,7 @@ int main() {
       mat2csv(temp_centroids, out_cent_file);
     }
   }
-
+  std::cout<<"test kmeans non reg consluso"<<std::endl;
   
   file_log.close();
 

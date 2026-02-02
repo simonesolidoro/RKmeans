@@ -1,6 +1,6 @@
 function:         Funzione_test
-combination:      
-n_obs_per_clust:  30
+combination:      001122
+n_obs_per_clust:  4
 n_clust:          2
 N:                2
 seed:             42

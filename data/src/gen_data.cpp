@@ -14,25 +14,25 @@ using std::numbers::pi;
 using namespace fdapde;
 
 int main() {
-  std::string output_dir = "../";
+  std::string output_dir = "./";
 
 
   //unsigned seed = std::random_device{}();
   unsigned seed = 42;
 
-  std::string combination = "";//"021102"; // "001122" or "021102" come combina convessa di tre centroidi (centro fw bw)
+  std::string combination = "001122";//"021102"; // "001122" or "021102" come combina convessa di tre centroidi (centro fw bw)
   unsigned N = 2;                     // numero dataset generati
   unsigned k = 3;                     // numero gruppi
   std::size_t n_obs_per_clust = 30;
   std::size_t n_obs = n_obs_per_clust * k;
 
-  unsigned N_st = 2;
+  unsigned N_st = 1;
   unsigned k_st = 2;      // due centroidi temporali
-  std::size_t n_obs_per_clust_st = 30;
+  std::size_t n_obs_per_clust_st = 4; //per test solo 4 poi simulazioni vere aumenta a 30
   std::size_t n_obs_st = n_obs_per_clust_st * k_st;
   // noise
   std::mt19937 gen(seed);
-  std::normal_distribution<double> noise(0.0, std::sqrt(0.1));
+  std::normal_distribution<double> noise(0.0, std::sqrt(0.3));
   std::uniform_real_distribution<double> unif_dist(0.0, 1.0);
 
   // cartelle per dati 2d e 3d
@@ -46,11 +46,15 @@ int main() {
   const std::string wave_type = "Funzione_test";
   // defiizione curva
   // 2D
-  auto Funzione_test_2d = [](double x, double y) {
+  auto Funzione_test_2d_temp = [](double x, double y, double A, double B) {
     const double term1 = std::cos(10.0 * pi * (0.9 * x + 0.3 * y)) * std::exp(-2.0 * ((x - 0.5)*(x - 0.5) + (y - 0.5)*(y - 0.5)));
-    const double term2 = 1.2 * std::exp(-7.0 * ((x - 0.60)*(x - 0.60) + (y - 0.50)*(y - 0.50)));
-    const double term3 = 0.7 * std::exp(-13.0 * ((x - 0.20)*(x - 0.20) + (y - 0.30)*(y - 0.30)));
+    const double term2 = A * std::exp(-7.0 * ((x - 0.60)*(x - 0.60) + (y - 0.50)*(y - 0.50)));
+    const double term3 = B * std::exp(-13.0 * ((x - 0.20)*(x - 0.20) + (y - 0.30)*(y - 0.30)));
     return term1 - term2 - term3;
+  };
+
+  auto Funzione_test_2d = [Funzione_test_2d_temp](double x, double y) {
+    return Funzione_test_2d_temp(x,y,1.2,0.7);
   };
 
 
@@ -374,6 +378,7 @@ int main() {
     }
 
   }
+  std::cout<<"dati spazio tempo generati"<<std::endl;
   return 0;
 }
 
