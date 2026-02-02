@@ -1,0 +1,10 @@
+function:         Funzione_test
+combination:      
+n_obs_per_clust:  30
+n_clust:          3
+N:                2
+seed:             42
+u: [
+0.796543
+0.0611824
+]

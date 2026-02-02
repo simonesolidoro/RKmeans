@@ -1,0 +1,4 @@
+
+gcv_sr_solospazio_threadlocal thread_1 nlambda_13 gran_-1 203031 180072 
+gcv_sr_solospazio_threadlocal thread_2 nlambda_13 gran_-1 102985 110796 
+gcv_sr_solospazio_threadlocal thread_4 nlambda_13 gran_-1 112399 137827 

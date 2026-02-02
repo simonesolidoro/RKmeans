@@ -1,0 +1,325 @@
+// This file is part of fdaPDE, a C++ library for physics-informed
+// spatial and functional data analysis.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#ifndef __FDAPDE_GRID_SEARCH_H__
+#define __FDAPDE_GRID_SEARCH_H__
+
+#include "header_check.h"
+//#include "../fdaPDE-cpp/fdaPDE/src/singleton_threadpool.h"
+namespace fdapde {
+
+template <int N> class GridSearch {
+   private:
+    using vector_t = std::conditional_t<N == Dynamic, Eigen::Matrix<double, Dynamic, 1>, Eigen::Matrix<double, N, 1>>;
+
+    vector_t optimum_;
+    double value_;                 // objective value at optimum
+    std::vector<double> values_;   // explored objective values during optimization //? in parallel ha senso tenerlo?
+    int size_;
+   public:
+    static constexpr bool gradient_free = true;
+    static constexpr int static_input_size = N;
+    vector_t x_curr;
+    double obj_curr;
+    // constructor
+    GridSearch() : size_(N) { fdapde_static_assert(N != Dynamic, THIS_METHOD_IS_FOR_STATIC_SIZED_GRID_SEARCH_ONLY); }
+    GridSearch(int size) : size_(N == Dynamic ? size : N) { fdapde_assert(N == Dynamic || size == N); }
+    GridSearch(const GridSearch& other) : size_(other.size_) { }
+    GridSearch& operator=(const GridSearch& other) {
+        size_ = other.size_;
+        return *this;
+    }
+    template <typename ObjectiveT, typename GridT, typename... Callbacks>
+        requires((internals::is_vector_like_v<GridT> || internals::is_matrix_like_v<GridT>) && std::is_invocable_v<ObjectiveT, vector_t>)
+    vector_t optimize(fdapde::execution_seq_t, ObjectiveT&& objective, const GridT& grid, Callbacks&&... callbacks) {
+        fdapde_static_assert(
+          std::is_same<decltype(std::declval<ObjectiveT>().operator()(vector_t())) FDAPDE_COMMA double>::value,
+          INVALID_CALL_TO_OPTIMIZE__OBJECTIVE_FUNCTOR_NOT_CALLABLE_AT_VECTOR_TYPE);
+        using layout_policy = decltype([]() {
+            if constexpr (internals::is_eigen_dense_xpr_v<GridT>) {
+                return std::conditional_t<GridT::IsRowMajor, internals::layout_right, internals::layout_left> {};
+            } else {
+                return internals::layout_right {};
+            }
+        }());
+        using grid_t = MdMap<const double, MdExtents<Dynamic, Dynamic>, layout_policy>;
+        constexpr double NaN = std::numeric_limits<double>::quiet_NaN();
+	
+        std::tuple<Callbacks...> callbacks_ {callbacks...};
+        grid_t grid_;
+        value_ = std::numeric_limits<double>::max();
+        if constexpr (internals::is_vector_like_v<GridT>) {
+            fdapde_assert(grid.size() % size_ == 0);
+            grid_ = grid_t(grid.data(), grid.size() / size_, size_);
+        } else {
+            fdapde_assert(grid.cols() == size_);
+            grid_ = grid_t(grid.data(), grid.rows(), size_);
+        }
+        bool stop = false;   // asserted true in case of forced stop
+        grid_.row(0).assign_to(x_curr.transpose());
+        obj_curr = objective(x_curr);
+        stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+        values_.clear();
+        values_.push_back(obj_curr);
+        if (obj_curr < value_) {
+            value_ = obj_curr;
+            optimum_ = x_curr;
+        }
+        // optimize field over supplied grid
+        for (std::size_t i = 1; i < grid_.rows() && !stop; ++i) {
+            grid_.row(i).assign_to(x_curr.transpose());
+            obj_curr = objective(x_curr);
+            stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+            values_.push_back(obj_curr);
+            // update minimum if better optimum found
+            if (obj_curr < value_) {
+                value_ = obj_curr;
+                optimum_ = x_curr;
+            }
+            stop |= internals::exec_stop_if(*this, objective);
+
+        }
+
+        return optimum_;
+    }
+    
+    // default to sequential execution
+    template <typename ObjectiveType, typename GridType, typename... Callbacks>
+    requires (std::is_invocable_v<ObjectiveType, vector_t>)
+        //requires(is_opt_callback_v<Callbacks> && ...) //commentati via
+    vector_t optimize(ObjectiveType&& objective, const GridType& grid, Callbacks&&... callbacks) {
+        return optimize(
+          fdapde::execution_seq, std::forward<ObjectiveType>(objective), grid, std::forward<Callbacks>(callbacks)...);
+    }
+
+
+
+    template <typename ObjectiveT, typename GridT, typename... Callbacks>
+        requires((internals::is_vector_like_v<GridT> || internals::is_matrix_like_v<GridT>) && std::is_invocable_v<ObjectiveT, vector_t>)
+    vector_t optimize(fdapde::execution_par_t, ObjectiveT&& objective, const GridT& grid,  Callbacks&&... callbacks) {
+        fdapde_static_assert(
+          std::is_same<decltype(std::declval<ObjectiveT>().operator()(vector_t())) FDAPDE_COMMA double>::value,
+          INVALID_CALL_TO_OPTIMIZE__OBJECTIVE_FUNCTOR_NOT_CALLABLE_AT_VECTOR_TYPE);
+        using layout_policy = decltype([]() {
+            if constexpr (internals::is_eigen_dense_xpr_v<GridT>) {
+                return std::conditional_t<GridT::IsRowMajor, internals::layout_right, internals::layout_left> {};
+            } else {
+                return internals::layout_right {};
+            }
+        }());
+        using grid_t = MdMap<const double, MdExtents<Dynamic, Dynamic>, layout_policy>;
+        
+        std::tuple<Callbacks...> callbacks_ {callbacks...};
+        constexpr double NaN = std::numeric_limits<double>::quiet_NaN();
+        
+        grid_t grid_;
+        value_ = std::numeric_limits<double>::max();
+        if constexpr (internals::is_vector_like_v<GridT>) {
+            fdapde_assert(grid.size() % size_ == 0);
+            grid_ = grid_t(grid.data(), grid.size() / size_, size_);
+        } else {
+            fdapde_assert(grid.cols() == size_);
+            grid_ = grid_t(grid.data(), grid.rows(), size_);
+        }
+
+        values_.resize(grid_.rows());
+        const int n_threads = parallel_get_num_threads();
+
+        // local worker state
+        std::vector<double> local_value(n_threads, std::numeric_limits<double>::max());
+        std::vector<int> local_optimum(n_threads);
+        // parallel optimize objective over grid
+        auto local_optimize = [&](int i) {
+            const int w_id = this_thread_id();
+            vector_t local_x_curr;
+            grid_.row(i).assign_to(local_x_curr.transpose());
+            double local_obj_curr = objective(local_x_curr);
+        //    stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+            values_[i] = local_obj_curr;
+            // update minimum if better optimum found
+            if (local_obj_curr < local_value[w_id]) {
+                local_value[w_id] = local_obj_curr;
+                local_optimum[w_id] = i;
+            }
+        //    stop |= internals::exec_stop_if(*this, objective);
+        };
+        parallel_for(0, grid_.rows(), local_optimize);
+
+        // sequential minimum reduction
+        int j = 0;
+        value_ = local_value[j];
+        for (int i = 1; i < n_threads; ++i) {
+            if (local_value[i] < value_) {
+                value_ = local_value[i];
+                j = i;
+            }
+        }
+        grid_.row(local_optimum[j]).assign_to(optimum_.transpose());
+        return optimum_;
+        
+    }
+    
+    // observers
+    const vector_t& optimum() const { return optimum_; }
+    double value() const { return value_; }
+    const std::vector<double>& values() const { return values_; }
+};
+
+}   // namespace fdapde
+
+#endif   // __FDAPDE_GRID_SEARCH_H__
+
+
+
+
+
+
+
+
+
+// // verisone con execution ma con utility di develop non pull
+
+// // This file is part of fdaPDE, a C++ library for physics-informed
+// // spatial and functional data analysis.
+// //
+// // This program is free software: you can redistribute it and/or modify
+// // it under the terms of the GNU General Public License as published by
+// // the Free Software Foundation, either version 3 of the License, or
+// // (at your option) any later version.
+// //
+// // This program is distributed in the hope that it will be useful,
+// // but WITHOUT ANY WARRANTY; without even the implied warranty of
+// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// // GNU General Public License for more details.
+// //
+// // You should have received a copy of the GNU General Public License
+// // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// #ifndef __FDAPDE_GRID_SEARCH_H__
+// #define __FDAPDE_GRID_SEARCH_H__
+
+// #include "header_check.h"
+
+// namespace fdapde {
+
+// template <typename VectorType_>
+//     requires(!std::is_lvalue_reference_v<VectorType_>)
+// struct GridSearch {
+//     using VectorType = VectorType_;
+//     static constexpr bool is_gradient_free = true;
+//     // publicly accessible optimizer state
+//     VectorType x_curr;
+//     double obj_curr;  
+//     // constructor
+//     GridSearch() : x_curr(), obj_curr(), optimum_(), value_(), values_() { }
+
+//     // optimizes objective over grid. sequential execution overload. for an n-dimensional grid of k points, grid is
+//     // organized as [(p_{i,1}, p_{i,2}, ..., p_{i,n})]_{i=1}^k
+//     template <typename ObjectiveType, typename GridT, typename... Callbacks>
+//         requires((internals::is_vector_like_v<GridT> || internals::is_matrix_like_v<GridT>))
+//     VectorType
+//     optimize(fdapde::execution_seq_t, ObjectiveType&& objective, const GridT& grid, Callbacks&&... callbacks) {
+//         std::tuple<Callbacks...> callbacks_ {callbacks...};
+//         bool stop = false;   // asserted true in case of forced stop
+//         values_.reserve(grid.rows());
+
+//         x_curr = grid.row(0);
+//         obj_curr = objective(x_curr);
+//         stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+//         values_.push_back(obj_curr);
+//         // initialize optimum
+//         value_ = obj_curr;
+//         optimum_ = x_curr;
+//         // optimize objective over grid
+//         for (int i = 1; i < grid.rows() && !stop; ++i) {
+//             x_curr = grid.row(i);
+//             obj_curr = objective(x_curr);
+//             stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+//             values_.push_back(obj_curr);
+//             // optimum update
+//             if (obj_curr < value_) {
+//                 value_ = obj_curr;
+//                 optimum_ = x_curr;
+//             }
+//             stop |= internals::exec_stop_if(*this, objective);
+//         }
+//         return optimum_;
+//     }
+//     // default to sequential execution
+//     template <typename ObjectiveType, typename GridType, typename... Callbacks>
+//         //requires(is_opt_callback_v<Callbacks> && ...) //commentati via
+//     VectorType optimize(ObjectiveType&& objective, const GridType& grid, Callbacks&&... callbacks) {
+//         return optimize(
+//           fdapde::execution_seq, std::forward<ObjectiveType>(objective), grid, std::forward<Callbacks>(callbacks)...);
+//     }
+
+//     // optimizes objective over grid. parallel execution overload. for an n-dimensional grid of k points, grid is
+//     // organized as [(p_{i,1}, p_{i,2}, ..., p_{i,n})]_{i=1}^k
+//     template <typename ObjectiveType, typename GridType, typename... Callbacks>
+//         requires((internals::is_vector_like_v<GridType> || internals::is_matrix_like_v<GridType>))
+//     VectorType
+//     optimize(fdapde::execution_par_t, ObjectiveType&& objective, const GridType& grid, Callbacks&&... callbacks) {
+//         std::tuple<Callbacks...> callbacks_ {callbacks...};
+//         bool stop = false;   // asserted true in case of forced stop
+//         values_.resize(grid.rows());
+//         const int n_threads = parallel_get_num_threads();
+
+//         // local worker state
+//         std::vector<double> local_value(n_threads, std::numeric_limits<double>::max());
+//         std::vector<int> local_optimum(n_threads);
+//         // parallel optimize objective over grid
+//         auto local_optimize = [&](int i) {
+//             const int w_id = this_worker_id();
+//             VectorType local_x_curr = grid.row(i);
+//             double local_obj_curr = objective(local_x_curr);
+//             stop |= internals::exec_eval_hooks(*this, objective, callbacks_);
+//             values_[i] = local_obj_curr;
+//             // update minimum if better optimum found
+//             if (local_obj_curr < local_value[w_id]) {
+//                 local_value[w_id] = local_obj_curr;
+//                 local_optimum[w_id] = i;
+//             }
+//             stop |= internals::exec_stop_if(*this, objective);
+//         };
+//         parallel_for(0, grid.rows(), local_optimize);
+
+//         // sequential minimum reduction
+//         int j = 0;
+//         value_ = local_value[j];
+//         for (int i = 1; i < n_threads; ++i) {
+//             if (local_value[i] < value_) {
+//                 value_ = local_value[i];
+//                 j = i;
+//             }
+//         }
+//         optimum_ = grid.row(local_optimum[j]);
+//         return optimum_;
+//     }
+
+//     // observers
+//     const VectorType& optimum() const { return optimum_; }
+//     double value() const { return value_; }
+//     const std::vector<double>& values() const { return values_; }
+//    private:
+//     VectorType optimum_;   // optimum point
+//     double value_;         // objective value at optimum
+//     std::vector<double> values_;
+//     std::mutex m_;
+// };
+
+// }   // namespace fdapde
+
+// #endif   // __FDAPDE_GRID_SEARCH_H__

@@ -1,0 +1,6 @@
+gcv_sr_solospazio_vector thread_1 nlambda_13 gran_-1 209867 212728 
+gcv_sr_solospazio_vector thread_2 nlambda_13 gran_-1 228183 371836 
+gcv_sr_solospazio_vector thread_4 nlambda_13 gran_-1 215615 220695 
+gcv_sr_solospazio_vector thread_8 nlambda_13 gran_-1 178026 168050 
+gcv_sr_solospazio_vector thread_12 nlambda_13 gran_-1 183816 98186 
+gcv_sr_solospazio_vector thread_16 nlambda_13 gran_-1 113869 133485 

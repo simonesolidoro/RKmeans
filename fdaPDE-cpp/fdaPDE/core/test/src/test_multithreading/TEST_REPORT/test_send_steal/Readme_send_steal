@@ -1,0 +1,8 @@
+test per confronto varie coppie di send-steal.
+threadpool esegue n_job ognuno computazionalmente costoso: n_body_function
+
+file .sh fa run dei test con n_thread=(1,2,4,6) hard code in file.sh
+	./send_steal_sbilanciati.sh  n_run sizeworkerqueeu n_body_function n_tot_job sbilanciamento
+e genera test_numthread.txt per ogni coppia di send-steal e per ogni numthread in n_thread
+
+in pyton notebook imposta parametri come quelli usati per eseguire file.sh 

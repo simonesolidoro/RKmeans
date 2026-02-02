@@ -1,0 +1,44 @@
+se non protetto con mutex da a volte crash inizializzazione dei SRPDE:
+test_sr_spaziotemposeparabile_gcv_parallel_unSRPDE_per_worker: /home/simo/eigen-3.4.0/Eigen/src/Core/DenseCoeffsBase.h:118: Eigen::DenseCoeffsBase<Derived, 0>::CoeffReturnType Eigen::DenseCoeffsBase<Derived, 0>::operator()(Eigen::Index, Eigen::Index) const [with Derived = Eigen::Matrix<double, -1, -1>; CoeffReturnType = const double&; Eigen::Index = long int]: Assertion `row >= 0 && row < rows() && col >= 0 && col < cols()' failed.
+test_sr_spaziotemposeparabile_gcv_parallel_unSRPDE_per_worker: /home/simo/eigen-3.4.0/Eigen/src/Core/DenseCoeffsBase.h:118: Eigen::DenseCoeffsBase<Derived, 0>::CoeffReturnType Eigen::DenseCoeffsBase<Derived, 0>::operator()(Eigen::Index, Eigen::Index) const [with Derived = Eigen::Matrix<double, -1, -1>; CoeffReturnType = const double&; Eigen::Index = long int]: Assertion `row >= 0 && row < rows() && col >= 0 && col < cols()' failed.
+test_sr_spaziotemposeparabile_gcv_parallel_unSRPDE_per_worker: /home/simo/eigen-3.4.0/Eigen/src/Core/DenseCoeffsBase.h:118: Eigen::DenseCoeffsBase<Derived, 0>::CoeffReturnType Eigen::DenseCoeffsBase<Derived, 0>::operator()(Eigen::Index, Eigen::Index) const [with Derived = Eigen::Matrix<double, -1, -1>; CoeffReturnType = const double&; Eigen::Index = long int]: Assertion `row >= 0 && row < rows() && col >= 0 && col < cols()' failed.
+Aborted (core dumped)
+
+
+usando: g++-14 -I./../../fdaPDE-cpp -I./../../fdaPDE-cpp/fdaPDE/core -I/home/simo/eigen-3.4.0 -std=c++20 -O0 -g -fno-omit-frame -pointer -fsanitize=address test_sr_spaziotemposeparabile_gcv_parallel_unSRPDE_per_worker.cpp -o test_sr_spaziotemposeparabile_gcv_parallel_unSRPDE_per_worker_asan 
+
+risultato:
+SUMMARY: AddressSanitizer: heap-use-after-free ../../fdaPDE-cpp/fdaPDE/core/fdaPDE/src/geometry/kd_tree.h:128 in fdapde::KDTree<4>::range_search(fdapde::KDTree<4>::RangeType const&) const::{lambda(fdapde::BinaryTree<int>::dfs_iterator const&)#1}::operator()(fdapde::BinaryTree<int>::dfs_iterator const&) const
+Shadow bytes around the buggy address:
+  0x504000018300: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018380: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018400: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018480: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018500: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+=>0x504000018580: fa fa fd fd fd fd fd fa fa fa[fd]fd fd fd fd fa
+  0x504000018600: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018680: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018700: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018780: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+  0x504000018800: fa fa fd fd fd fd fd fa fa fa fd fd fd fd fd fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==27581==ABORTING
+

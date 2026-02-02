@@ -1,0 +1,7 @@
+n_obs_per_clust: 30
+n_clust:         3
+N:               2
+seed:            42
+2d/Funzione_test_0: rkmeans execution completed in 4 iterations (max=25), time:6.06407s
+2d/Funzione_test_1: rkmeans execution completed in 2 iterations (max=25), time:3.75248s
+3d/Funzione_test_0: rkmeans execution completed in 2 iterations (max=25), time:615.273s
