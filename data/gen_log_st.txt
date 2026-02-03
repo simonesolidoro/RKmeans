@@ -1,8 +1,8 @@
 function:         Funzione_test
 combination:      001122
-n_obs_per_clust:  4
+n_obs_per_clust:  10
 n_clust:          2
-N:                2
+N:                5
 seed:             42
 u: [
 ]

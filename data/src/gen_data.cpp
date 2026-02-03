@@ -26,9 +26,9 @@ int main() {
   std::size_t n_obs_per_clust = 30;
   std::size_t n_obs = n_obs_per_clust * k;
 
-  unsigned N_st = 1;
+  unsigned N_st = 5;
   unsigned k_st = 2;      // due centroidi temporali
-  std::size_t n_obs_per_clust_st = 4; //per test solo 4 poi simulazioni vere aumenta a 30
+  std::size_t n_obs_per_clust_st = 10; //per test solo 4 poi simulazioni vere aumenta a 30
   std::size_t n_obs_st = n_obs_per_clust_st * k_st;
   // noise
   std::mt19937 gen(seed);

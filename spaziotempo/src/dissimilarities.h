@@ -75,13 +75,13 @@ struct L2Policy_st_ap {
                     const Eigen::MatrixBase<T2> &g) const {
     double distanza = 0.0;
 
+    Eigen::VectorXd diff = f - g;
     for (int t = 0; t < nodi_tempo; ++t) {
-      auto f_t = f.segment(t * nodi_spazio, nodi_spazio);
+      auto diff_t = diff.segment(t * nodi_spazio, nodi_spazio);
       for(int tt= 0; tt< nodi_tempo; tt++){
-        auto g_t = g.segment(tt * nodi_spazio, nodi_spazio);
+        auto diff_tt = diff.segment(tt * nodi_spazio, nodi_spazio);
 
-        Eigen::VectorXd diff = f_t - g_t;
-        double squared_norm = diff.transpose() * (R0_ * diff);
+        double squared_norm = diff_t.transpose() * (R0_ * diff_tt);
         distanza += squared_norm;
       }
     }

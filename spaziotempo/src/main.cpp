@@ -77,15 +77,15 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
-  // lambda = {1e-8,1e-6}; // regularization parameter for RKMeans
+  lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
 
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
-  lambda_2d.resize(8,2);
+  lambda_2d.resize(16,2);
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -9.0 + 0.25 * i);  
-      lambda_2d(i,1) = std::pow(10, -7.0 + 0.25 * i);  
+      lambda_2d(i,0) = std::pow(10, -11.0 + 0.25 * i);  
+      lambda_2d(i,1) = std::pow(10, -11.0 + 0.25 * i);  
   }
 
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_3d;
@@ -108,8 +108,12 @@ int main() {
   }
 
   // create output directories
+  // _reg è presmooth f(), kmenas con dist K(T0,R0)
+  // _reg_ap è presmooth fitted(), kmeans con dist ap (verifica se dist ap funziona, perche altri no presmooth non sembrano convergere)
+  // _Noreg è no presmooth, kmeans con dist ap
+  // _reg_nosmooth è no presmooth, reg-kmeans con dist ap
 std::cout<<"create griglie gcv"<<std::endl; 
-  for (std::string_view dir1 : {"2d_st_reg", "3d_st_reg","2d_st_Noreg", "3d_st_Noreg"})
+  for (std::string_view dir1 : {"2d_st_smooth_f", "3d_st_smooth_f","2d_st_smooth_fitted","3d_st_smooth_fitted","2d_st_k", "3d_st_k","2d_st_regk","3d_st_regk"})
     for (std::string_view dir2 : curve_types)
       fs::create_directories(fs::path(output_dir) / dir1 / dir2);
 std::cout<<"create directory per output"<<std::endl; 
@@ -181,8 +185,8 @@ std::cout<<"caricati dati "<<std::endl;
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   L2Policy dist_2d(K0_2d);
   L2Policy dist_3d(K0_3d);
-  L2Policy_st_ap dist_2d_noreg(R0_2d,R0_2d.rows(),Rt.rows());
-  L2Policy_st_ap dist_3d_noreg(R0_3d,R0_3d.rows(),Rt.rows());
+  L2Policy_st_ap dist_2d_noreg(R0_2d,R0_2d.rows(),istanti.rows());
+  L2Policy_st_ap dist_3d_noreg(R0_3d,R0_3d.rows(),istanti.rows());
   // L2Policy_spaziotempo dist_2d(K0_2d,R0_2d.rows(),Rt.rows());
   // L2Policy_spaziotempo dist_3d(K0_3d,R0_3d.rows(),Rt.rows());
   // KppPolicy init_2d(dist_2d);
@@ -199,8 +203,8 @@ std::cout<<"caricati dati "<<std::endl;
   // CLUSTERING
 
 std::cout<<"creati spazi, dist and init"<<std::endl;
-/*
-  for (auto &dir1 : {"2d_st_reg"}) { //, "3d_st_reg" per ora solo 2d
+
+  for (auto &dir1 : {"2d_st_smooth_f"}) { //, "3d_st_smooth_f" per ora solo 2d
     for (unsigned n = 0; n < N; ++n) {
 //std::cout<<"crea file mem centr"<<std::endl; 
       std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
@@ -214,14 +218,14 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
       file_memb.close();
       file_cent.close();
       
-      std::string dirdata = (dir1 == "2d_st_reg")? "2d_st":"3d_st";
+      std::string dirdata = (dir1 == "2d_st_smooth_f")? "2d_st":"3d_st";
       std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
       Eigen::MatrixXd responses = csv2mat<double>(resp_file);
       Eigen::MatrixXd responses_smooth(responses.rows(),responses.cols());
 
       t1 = high_resolution_clock::now();
       //presmoothing 
-      if(dir1 == "2d_st_reg"){
+      if(dir1 == "2d_st_smooth_f"){
 //std::cout<<"smoothing resp"<<std::endl; 
         for (int s=0 ; s< responses.rows(); s++){
 //std::cout<<"smooth s:"<<s<<std::endl;
@@ -230,12 +234,13 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
           auto& l1 = data.template insert_scalar_layer<POINT, POINT>("l1", std::pair {MESH_NODES, MESH_NODES});
           l1.load_vec("y", responses.row(s));
           SRPDE model("y ~ f", data,fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T})); //perche ricrea modello ogni volta e non fa semplicemente update_response ?              
-          // tolot gcv perché crasha 
-          GridSearch<2> optimizer;
-          optimizer.optimize(fdapde::execution_par, model.gcv_par(100, 476813), lambda_2d);
-std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
-          model.fit(0,optimizer.optimum()[0],optimizer.optimum()[1]);
-          auto f_= model.f();
+          // tolot gcv per risparmiare tempo 
+          //GridSearch<2> optimizer;
+          //optimizer.optimize(fdapde::execution_par, model.gcv_par(100, 476813), lambda_2d);
+//std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
+          //model.fit(0,optimizer.optimum()[0],optimizer.optimum()[1]);
+  	  model.fit(0,5.62341e-08, 5.62341e-08);
+  	  auto f_= model.f();
 //      std::cout<<"f.cols()"<<f_.cols()<<" r:"<<f_.rows()<<std::endl;
           if(s== 0){
             responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());    
@@ -243,7 +248,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
           responses_smooth.row(s)= model.f();
         }
       }
-      if(dir1 == "3d_st_reg"){
+      if(dir1 == "3d_st_smooth_f"){
         for (int s=0 ; s< responses.rows(); s++){
           // load data in geoframe
           GeoFrame data(D3, T);
@@ -266,7 +271,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       Eigen::MatrixXd temp_centroids;
 
     
-      if (dir1 == "2d_st_reg") {
+      if (dir1 == "2d_st_smooth_f") {
         // RKMeans
         // RKMeans_st_parallel_gcv rkmeans(dist_2d, init_manual, D2,T,
         //                 fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses_smooth, k,
@@ -280,7 +285,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
         temp_memb = rkmeans.memberships();
         temp_centroids = rkmeans.centroids();
       }
-      if (dir1 == "3d_st_reg") {
+      if (dir1 == "3d_st_smooth_f") {
         // RKMeans
         KMeans rkmeans(responses_smooth, dist_3d, init_manual,k,
                         max_iter, seed);
@@ -311,8 +316,10 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       mat2csv(temp_centroids, out_cent_file);
     }
   }
-*/
-  for (auto &dir1 : {"2d_st_Noreg"}) { //, "3d_st_Noreg" per ora solo 2d
+
+// presmoot ma cpn dataset di fitted() cosi da fare kmeans normale ma con dist ap 
+
+  for (auto &dir1 : {"2d_st_smooth_fitted"}) { //, "3d_st_smooth_fitted" per ora solo 2d
     for (unsigned n = 0; n < N; ++n) {
 //std::cout<<"crea file mem centr"<<std::endl; 
       std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
@@ -326,7 +333,121 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       file_memb.close();
       file_cent.close();
       
-      std::string dirdata = (dir1 == "2d_st_Noreg")? "2d_st":"3d_st";
+      std::string dirdata = (dir1 == "2d_st_smooth_fitted")? "2d_st":"3d_st";
+      std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      Eigen::MatrixXd responses = csv2mat<double>(resp_file);
+      Eigen::MatrixXd responses_smooth(responses.rows(),responses.cols());
+
+      t1 = high_resolution_clock::now();
+      //presmoothing 
+      if(dir1 == "2d_st_smooth_fitted"){
+//std::cout<<"smoothing resp"<<std::endl; 
+        for (int s=0 ; s< responses.rows(); s++){
+//std::cout<<"smooth s:"<<s<<std::endl;
+          // load data in geoframe
+          GeoFrame data(D2, T);
+          auto& l1 = data.template insert_scalar_layer<POINT, POINT>("l1", std::pair {MESH_NODES, MESH_NODES});
+          l1.load_vec("y", responses.row(s));
+          SRPDE model("y ~ f", data,fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T})); //perche ricrea modello ogni volta e non fa semplicemente update_response ?              
+          // tolot gcv per risparmio tempo momentaneo 
+          //GridSearch<2> optimizer;
+          //optimizer.optimize(fdapde::execution_par, model.gcv_par(100, 476813), lambda_2d);
+//std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
+  //        model.fit(0,optimizer.optimum()[0],optimizer.optimum()[1]); 5.62341e-08 5.62341e-06
+  	  model.fit(0,5.62341e-08, 5.62341e-08);
+          auto f_= model.fitted();
+//      std::cout<<"f.cols()"<<f_.cols()<<" r:"<<f_.rows()<<std::endl;
+          if(s== 0){
+            responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());    
+          }
+          responses_smooth.row(s)= model.fitted();//fitted() non f()
+        }
+      }
+      if(dir1 == "3d_st_smooth_fitted"){
+        for (int s=0 ; s< responses.rows(); s++){
+          // load data in geoframe
+          GeoFrame data(D3, T);
+          auto& l1 = data.template insert_scalar_layer<POINT, POINT>("l1", std::pair {MESH_NODES, MESH_NODES});
+          l1.load_vec("y", responses.row(s));
+          SRPDE model("y ~ f", data,fe_ls_separable_mono(std::pair {a_3d, F_3d}, std::pair {a_T, F_T})); //perche ricrea modello ogni volta e non fa semplicemente update_response ?
+          GridSearch<2> optimizer;
+          optimizer.optimize(fdapde::execution_par, model.gcv_par(100, 476813), lambda_3d);
+          model.fit(0,optimizer.optimum()[0],optimizer.optimum()[1]);
+          auto f_= model.fitted();
+          if(s== 0){
+            responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());    
+          }
+          responses_smooth.row(s)= model.fitted();
+        }
+      }  
+      
+      unsigned n_iter;
+      std::vector<int> temp_memb;
+      Eigen::MatrixXd temp_centroids;
+
+    
+      if (dir1 == "2d_st_smooth_fitted") {
+        // RKMeans
+        // RKMeans_st_parallel_gcv rkmeans(dist_2d, init_manual, D2,T,
+        //                 fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses_smooth, k,
+        //                 max_iter, seed);
+        KMeans rkmeans(responses_smooth,dist_2d_noreg, init_manual, k,
+                        max_iter, seed);
+        //rkmeans.set_gcv_grid(lambda_2d);
+        // rkmeans.run(lambda);
+        rkmeans.run();
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+      if (dir1 == "3d_st_smooth_fitted") {
+        // RKMeans
+        KMeans rkmeans(responses_smooth, dist_3d_noreg, init_manual,k,
+                        max_iter, seed);
+        rkmeans.run();
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+
+
+      t2 = high_resolution_clock::now();
+      elapsed_time = duration_cast<duration<double>>(t2 - t1);
+
+      std::string kmeans_type = "rkmeans";
+      std::ostringstream ss;
+      ss << dir1 << "/" << curve_types[0] << "_" << n << ": "
+          << kmeans_type << " execution completed in " << n_iter
+          << " iterations (max=" << max_iter << "), time (pre-smooth(fitted)+kmeans(con dist ap)):" << elapsed_time;
+      std::string msg = ss.str();
+      std::cout << msg << std::endl;
+      file_log << msg << std::endl;
+
+      Eigen::Map<const Eigen::RowVectorXi> temp_row_view(temp_memb.data(),
+                                                          temp_memb.size());
+      // append_mat2csv(temp_row_view, out_memb_file);
+      // append_mat2csv(temp_centroids, out_cent_file);
+      mat2csv(temp_row_view, out_memb_file);
+      mat2csv(temp_centroids, out_cent_file);
+    }
+  }
+
+	//kemans normale su dataset originale (rumoroso non smooth)
+  for (auto &dir1 : {"2d_st_k"}) { //, "3d_st_k" per ora solo 2d
+    for (unsigned n = 0; n < N; ++n) {
+//std::cout<<"crea file mem centr"<<std::endl; 
+      std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
+      std::string out_cent_file = output_dir + dir1 + "/" + curve_types[0] + "/centroids"+ "_" + std::to_string(n) + ".csv";
+      std::ofstream file_memb(out_memb_file);
+      std::ofstream file_cent(out_cent_file);
+      if (!file_memb.is_open() || !file_cent.is_open()) {
+        std::cerr << "Error opening file: " << out_memb_file << " or " << out_cent_file << std::endl;
+        return 1;
+      }
+      file_memb.close();
+      file_cent.close();
+      
+      std::string dirdata = (dir1 == "2d_st_k")? "2d_st":"3d_st";
       std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
       Eigen::MatrixXd responses = csv2mat<double>(resp_file);
       std::cout<<"caricata resp in Noreg"<<std::endl;
@@ -337,8 +458,8 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       Eigen::MatrixXd temp_centroids;
 
     
-      if (dir1 == "2d_st_Noreg") {
-	std::cout<<" dentro if di 2d_st_Noreg"<<std::endl;
+      if (dir1 == "2d_st_k") {
+	//std::cout<<" dentro if di 2d_st_k"<<std::endl;
         // RKMeans
         // RKMeans_st_parallel_gcv rkmeans(dist_2d, init_manual, D2,T,
         //                 fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses_smooth, k,
@@ -347,13 +468,13 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
                         max_iter, seed);
         //rkmeans.set_gcv_grid(lambda_2d);
         // rkmeans.run(lambda);
-std::cout<<"creato kmeans "<<std::endl;
+//std::cout<<"creato kmeans "<<std::endl;
         rkmeans.run();
         n_iter = rkmeans.n_iterations();
         temp_memb = rkmeans.memberships();
         temp_centroids = rkmeans.centroids();
       }
-      if (dir1 == "3d_st_Noreg") {
+      if (dir1 == "3d_st_k") {
         // RKMeans
         KMeans rkmeans(responses, dist_3d_noreg, init_manual,k,
                         max_iter, seed);
@@ -385,6 +506,86 @@ std::cout<<"creato kmeans "<<std::endl;
     }
   }
 
+// kmenas regolarizzato su dataset originale (distanza AP)
+
+  for (auto &dir1 : {"2d_st_regk"}) { //, "3d_st_regk" per ora solo 2d
+    for (unsigned n = 0; n < N; ++n) {
+//std::cout<<"crea file mem centr"<<std::endl; 
+      std::string out_memb_file = output_dir + dir1 + "/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
+      std::string out_cent_file = output_dir + dir1 + "/" + curve_types[0] + "/centroids"+ "_" + std::to_string(n) + ".csv";
+      std::ofstream file_memb(out_memb_file);
+      std::ofstream file_cent(out_cent_file);
+      if (!file_memb.is_open() || !file_cent.is_open()) {
+        std::cerr << "Error opening file: " << out_memb_file << " or " << out_cent_file << std::endl;
+        return 1;
+      }
+      file_memb.close();
+      file_cent.close();
+      
+      std::string dirdata = (dir1 == "2d_st_regk")? "2d_st":"3d_st";
+      std::string resp_file = std::string("./../data/") + dirdata + "/" + curve_types[0] + "/" + curve_types[0] + "_" + std::to_string(n) + ".csv"; // curve_types[0] perche un solo curve type Funzione_test.
+      Eigen::MatrixXd responses = csv2mat<double>(resp_file);
+      std::cout<<"caricata resp in Noreg"<<std::endl;
+      t1 = high_resolution_clock::now();
+      
+      unsigned n_iter;
+      std::vector<int> temp_memb;
+      Eigen::MatrixXd temp_centroids;
+
+    
+      if (dir1 == "2d_st_regk") {
+//	std::cout<<" dentro if di 2d_st_reg_nosmooth"<<std::endl;
+        // RKMeans
+	int max_it_ = 15;
+        RKMeans_st_parallel_gcv_nosmooth rkmeans(dist_2d_noreg, init_manual, D2,T,
+                         fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T}), responses, k,
+                         max_it_, seed);
+//	std::cout<<"creato rkmeans2d"<<std::endl;
+        //KMeans rkmeans(responses,dist_2d_noreg, init_manual, k,
+        //                max_iter, seed);
+        rkmeans.set_gcv_grid(lambda_2d);
+//	std::cout<<"set griglia 2d"<<std::endl;
+        rkmeans.run(lambda);
+        //rkmeans.run();
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+      if (dir1 == "3d_st_regk") {
+        // RKMeans
+	RKMeans_st_parallel_gcv_nosmooth rkmeans(dist_3d_noreg, init_manual, D3,T,
+                         fe_ls_separable_mono(std::pair {a_3d, F_3d}, std::pair {a_T, F_T}), responses, k,
+                         max_iter, seed);
+//        KMeans rkmeans(responses, dist_3d_noreg, init_manual,k,
+  //                      max_iter, seed);
+        rkmeans.set_gcv_grid(lambda_3d);
+	rkmeans.run(lambda);
+        n_iter = rkmeans.n_iterations();
+        temp_memb = rkmeans.memberships();
+        temp_centroids = rkmeans.centroids();
+      }
+
+
+      t2 = high_resolution_clock::now();
+      elapsed_time = duration_cast<duration<double>>(t2 - t1);
+
+      std::string kmeans_type = "kmeans";
+      std::ostringstream ss;
+      ss << dir1 << "/" << curve_types[0] << "_" << n << ": "
+          << kmeans_type << " execution completed in " << n_iter
+          << " iterations (max=" << max_iter << "), time (reg-kmeans, no presmooth quindi distnza AP no Kron):" << elapsed_time;
+      std::string msg = ss.str();
+      std::cout << msg << std::endl;
+      file_log << msg << std::endl;
+
+      Eigen::Map<const Eigen::RowVectorXi> temp_row_view(temp_memb.data(),
+                                                          temp_memb.size());
+      // append_mat2csv(temp_row_view, out_memb_file);
+      // append_mat2csv(temp_centroids, out_cent_file);
+      mat2csv(temp_row_view, out_memb_file);
+      mat2csv(temp_centroids, out_cent_file);
+    }
+  }
 
   
   file_log.close();
