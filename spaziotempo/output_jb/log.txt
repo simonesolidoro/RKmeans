@@ -1,0 +1,45 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 20
+n_clust:         2
+N:               5
+seed:            42
+create griglie gcv
+create directory per output
+15 1
+caricati dati 
+creati spazi, dist and init
+fine presmooth ap
+2d_st_smooth_fitted_ap/Funzione_test_0: rkmeans execution completed in 3 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist ap)):5.46641s
+fine presmooth ap
+2d_st_smooth_fitted_ap/Funzione_test_1: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist ap)):5.20355s
+fine presmooth ap
+2d_st_smooth_fitted_ap/Funzione_test_2: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist ap)):5.07466s
+fine presmooth ap
+2d_st_smooth_fitted_ap/Funzione_test_3: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist ap)):5.45158s
+fine presmooth ap
+2d_st_smooth_fitted_ap/Funzione_test_4: rkmeans execution completed in 3 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist ap)):5.56863s
+2d_st_smooth_fitted_st/Funzione_test_0: rkmeans execution completed in 2 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist st)):5.22108s
+2d_st_smooth_fitted_st/Funzione_test_1: rkmeans execution completed in 2 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist st)):4.952s
+2d_st_smooth_fitted_st/Funzione_test_2: rkmeans execution completed in 2 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist st)):5.17363s
+2d_st_smooth_fitted_st/Funzione_test_3: rkmeans execution completed in 2 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist st)):5.1763s
+2d_st_smooth_fitted_st/Funzione_test_4: rkmeans execution completed in 2 iterations (max=25), time (pre-smooth(jb,fitted)+kmeans(con dist st)):5.15758s
+caricata resp in Noreg
+0 , 1 , 0 , 1 , 1 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 0 , 1 , 1 , 0 , 1 , 2d_st_regk_ap/Funzione_test_0: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza AP no Kron):0.690226s
+caricata resp in Noreg
+0 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 2d_st_regk_ap/Funzione_test_1: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza AP no Kron):1.03654s
+caricata resp in Noreg
+0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 2d_st_regk_ap/Funzione_test_2: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza AP no Kron):0.692154s
+caricata resp in Noreg
+0 , 1 , 1 , 0 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 2d_st_regk_ap/Funzione_test_3: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza AP no Kron):0.695446s
+caricata resp in Noreg
+0 , 1 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 2d_st_regk_ap/Funzione_test_4: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza AP no Kron):0.682953s
+0 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2d_st_regk_st/Funzione_test_0: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.794566s
+0 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 2d_st_regk_st/Funzione_test_1: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.803073s
+0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2d_st_regk_st/Funzione_test_2: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.802894s
+0 , 1 , 1 , 0 , 1 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2d_st_regk_st/Funzione_test_3: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.81119s
+0 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2d_st_regk_st/Funzione_test_4: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.805924s

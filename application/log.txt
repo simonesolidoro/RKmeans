@@ -1,0 +1,84 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+iniziamo
+set directori data output
+triangolazione
+caricato dataset
+resize responses_smooth
+inizio smooth i-0
+fine smooth i-0
+inizio smooth i-1
+fine smooth i-1
+inizio smooth i-2
+fine smooth i-2
+inizio smooth i-3
+fine smooth i-3
+inizio smooth i-4
+fine smooth i-4
+inizio smooth i-5
+fine smooth i-5
+inizio smooth i-6
+fine smooth i-6
+inizio smooth i-7
+fine smooth i-7
+inizio smooth i-8
+fine smooth i-8
+inizio smooth i-9
+fine smooth i-9
+inizio smooth i-10
+fine smooth i-10
+inizio smooth i-11
+fine smooth i-11
+inizio smooth i-12
+fine smooth i-12
+inizio smooth i-13
+fine smooth i-13
+inizio smooth i-14
+fine smooth i-14
+inizio smooth i-15
+fine smooth i-15
+inizio smooth i-16
+fine smooth i-16
+inizio smooth i-17
+fine smooth i-17
+inizio smooth i-18
+fine smooth i-18
+inizio smooth i-19
+fine smooth i-19
+inizio smooth i-20
+fine smooth i-20
+inizio smooth i-21
+fine smooth i-21
+inizio smooth i-22
+fine smooth i-22
+inizio smooth i-23
+fine smooth i-23
+inizio smooth i-24
+fine smooth i-24
+inizio smooth i-25
+fine smooth i-25
+inizio smooth i-26
+fine smooth i-26
+inizio smooth i-27
+fine smooth i-27
+inizio smooth i-28
+fine smooth i-28
+inizio smooth i-29
+fine smooth i-29
+inizio smooth i-30
+fine smooth i-30
+inizio smooth i-31
+fine smooth i-31
+inizio smooth i-32
+fine smooth i-32
+inizio smooth i-33
+fine smooth i-33
+inizio smooth i-34
+fine smooth i-34
+inizio smooth i-35
+fine smooth i-35
+inizio smooth i-36

@@ -28,7 +28,7 @@ int main() {
 
   unsigned N_st = 5;
   unsigned k_st = 2;      // due centroidi temporali
-  std::size_t n_obs_per_clust_st = 10; //per test solo 4 poi simulazioni vere aumenta a 30
+  std::size_t n_obs_per_clust_st = 20; //per test solo 4 poi simulazioni vere aumenta a 30
   std::size_t n_obs_st = n_obs_per_clust_st * k_st;
   // noise
   std::mt19937 gen(seed);
@@ -240,7 +240,7 @@ int main() {
   log_out_st << "]\n";
   log_out_st.close();
   //  spazio-tempo separabile 
-  unsigned T_nodi = 10;        // numero time steps 
+  unsigned T_nodi = 15;        // numero time steps 
   double sigma_noise = std::sqrt(0.1); // stesso rumore
   auto heaviside = [](double x) { return x >= 0.0 ? 1.0 : 0.0; };
 
@@ -261,13 +261,13 @@ int main() {
   auto g0 = [&](double t) {
     return temporal_profile(t, t0_0,
                             /*A=*/1.0, /*sigma_t=*/0.04,
-                            /*B=*/0.6, /*f=*/6.0, /*gamma=*/8.0);
+                            /*B=*/0.6, /*f=*/17.0, /*gamma=*/8.0);
   };
 
   auto g1 = [&](double t) {
     return temporal_profile(t, t0_1,
                             /*A=*/1.0, /*sigma_t=*/0.04,
-                            /*B=*/0.6, /*f=*/6.0, /*gamma=*/8.0);
+                            /*B=*/0.6, /*f=*/17.0, /*gamma=*/8.0);
   };
 
   //creo cartelle
@@ -286,7 +286,7 @@ int main() {
   Triangulation<1, 1> T = Triangulation<1, 1>::UnitInterval(T_nodi);
 
   auto nodes_t = T.nodes();   // n_node_T x 1
-  mat2csv(T.nodes(), output_dir + "istanti_t.csv");
+  mat2csv(T.nodes(), output_dir + "istanti_t.csv"); //va aumentata la setprecision in mat2csv perche arrotonda troppo
 
   //iterazioni 
   for (unsigned n = 0; n<N_st ; n++){

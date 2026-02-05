@@ -1,0 +1,9 @@
+n_obs_per_clust: 10
+n_clust:         2
+N:               5
+seed:            42
+2d_st_falsad/Funzione_test_0: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(fitted)+kmeans(con dist falsa distanza spazio tempo)):208.107s
+2d_st_falsad/Funzione_test_1: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(fitted)+kmeans(con dist falsa distanza spazio tempo)):208.839s
+2d_st_falsad/Funzione_test_2: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(fitted)+kmeans(con dist falsa distanza spazio tempo)):208.735s
+2d_st_falsad/Funzione_test_3: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(fitted)+kmeans(con dist falsa distanza spazio tempo)):208.805s
+2d_st_falsad/Funzione_test_4: rkmeans execution completed in 1 iterations (max=25), time (pre-smooth(fitted)+kmeans(con dist falsa distanza spazio tempo)):208.258s
