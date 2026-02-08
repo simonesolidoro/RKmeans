@@ -77,6 +77,9 @@ class SRPDE {
     }
     void prepara_per_parallelo(int n_worker){ solver_.prepara_per_parallelo(n_worker);}
 
+    //aggiunto per vedere Psi_ e poter passare da centroidi = coeff di espaznsione spazio tempo ,ad centroidi = valore in nodi
+    const sparse_matrix_t& get_psi() const { return solver_.Psi();}
+
     // Generalized Cross Validation index
     struct gcv_t : public ScalarFieldBase<n_lambda, gcv_t> {
         using Base = ScalarFieldBase<1, gcv_t>;

@@ -4,7 +4,4 @@ loading fdapde_devel environment
 Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
 compiling...
 launching executable...
-Generated 2D+3D data (Funzione_test) for iteration 0
-Generated 2D+3D data (Funzione_test) for iteration 1
-Data spazio generation completed successfully.
 dati spazio tempo generati

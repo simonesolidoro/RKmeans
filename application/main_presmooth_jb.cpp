@@ -61,7 +61,7 @@ responses_smooth.resize(responses.rows(), responses.cols());
 
   std::cout<<"resize responses_smooth"<<std::endl;
 
-for (int i = 0; i < responses.rows(); ++i) 
+for (int i = 0; i < 1; ++i) 
 {
 	std::cout<< "inizio smooth i-"<<i<<std::endl;
     GeoFrame data(D, T);
@@ -89,7 +89,7 @@ for (int i = 0; i < responses.rows(); ++i)
 }
 
 
-    std::string out_smooth = output_dir + "/presmoooth_jb_1685_dataset_cntrl_scz.csv";
+    std::string out_smooth = output_dir + "/presmoooth_jb_1685_dataset_cntrl_scz_0_124.csv";
     std::ofstream file_smooth(out_smooth);
     if (!file_smooth.is_open()) {
       std::cerr << "Error opening file: " << out_smooth << std::endl;

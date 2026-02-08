@@ -3,9 +3,9 @@
 #PBS -S /bin/bash
 #PBS -l select=1:ncpus=28,walltime=24:00:00
 #PBS -j oe
-#PBS -N neurotest_par
+#PBS -N reK_st_50piulontani
 
-FILENAME="main_jb_st_noout"
+FILENAME="main_jb_st_50piulontani"
 
 cd "${PBS_O_WORKDIR}"
 

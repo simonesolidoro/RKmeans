@@ -2,7 +2,7 @@ In file included from ./fdaPDE-cpp/fdaPDE/core/fdaPDE/linear_algebra.h:71,
                  from ./fdaPDE-cpp/fdaPDE/core/fdaPDE/core.h:23,
                  from ./fdaPDE-cpp/fdaPDE/fdapde.h:20,
                  from ./../spaziotempo/src/kmeans_par.h:14,
-                 from main_presmooth_jb.cpp:13:
+                 from main_jb_st_50piulontani.cpp:13:
 ./fdaPDE-cpp/fdaPDE/core/fdaPDE/src/linear_algebra/rp_chol.h: In member function 'void fdapde::RpChol<MatrixType>::compute(const MatrixType&, double)':
 ./fdaPDE-cpp/fdaPDE/core/fdaPDE/src/linear_algebra/rp_chol.h:70:49: warning: 'Eigen::placeholders::all' is deprecated [-Wdeprecated-declarations]
    70 |             matrix_t G = A(Eigen::placeholders::all, pivot_vec) -
@@ -10,7 +10,7 @@ In file included from ./fdaPDE-cpp/fdaPDE/core/fdaPDE/linear_algebra.h:71,
 In file included from /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag/include/eigen3/Eigen/Core:265,
                  from /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag/include/eigen3/Eigen/Dense:1,
                  from ./../spaziotempo/src/dissimilarities.h:4,
-                 from main_presmooth_jb.cpp:11:
+                 from main_jb_st_50piulontani.cpp:11:
 /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag/include/eigen3/Eigen/src/Core/util/IndexedViewHelper.h:179:40: note: declared here
   179 |   EIGEN_DEPRECATED static const all_t  all  = Eigen::all;    // PLEASE use Eigen::all    instead of Eigen::placeholders::all
       |                                        ^~~
