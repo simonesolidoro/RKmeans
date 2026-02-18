@@ -58,24 +58,24 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
-  lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
+ // lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
 
-  /* // commentata per test per fare veloce
+  // commentata per test per fare veloce
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
   lambda_2d.resize(16,2);
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -11.0 + 0.25 * i);
-      lambda_2d(i,1) = std::pow(10, -11.0 + 0.25 * i);
+      lambda_2d(i,0) = std::pow(10, -8.0 + 0.10 * i);
+      lambda_2d(i,1) = std::pow(10, -8.0 + 0.10 * i);
   }
-*/
+/*
    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
    lambda_2d.resize(1,2);            
    for(int i =0; i<lambda_2d.rows();++i){                                                                                                                          lambda_2d(i,0) = 5.62341e-08;
        lambda_2d(i,1) = 5.62341e-08;
    }
-
+*/
   if (seed.has_value()) {
     std::cout << "seed:            " << *seed << "\n";
   } else {
@@ -133,7 +133,8 @@ std::cout<<"caricati dati "<<std::endl;
 
   std::vector<int> manual_ids;
   for (std::size_t i = 0; i < k; ++i) {
-    manual_ids.push_back(static_cast<int>(i)); // * n_obs_per_clust));
+    //manual_ids.push_back(static_cast<int>(i)); // * n_obs_per_clust));
+    manual_ids.push_back(static_cast<int>(i * n_obs_per_clust));
   }
   ManualInitPolicy init_manual(manual_ids);
 
@@ -146,7 +147,7 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
 
 // kmenas regolarizzato su dataset originale (distanza ST)
   {
-    for (unsigned n = 0; n < N; ++n) {
+    for (unsigned n = 0; n < N; ++n) {// al psto che 0 ed N perché voglio rifare solo la 5 con lambda piu fitto
 //std::cout<<"crea file mem centr"<<std::endl;
       std::string out_memb_file = output_dir + "2d_st_presmooth_mono_k/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
       std::string out_cent_file = output_dir + "2d_st_presmooth_mono_k/" + curve_types[0] + "/centroids"+ "_" + std::to_string(n) + ".csv";
@@ -210,7 +211,8 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
       elapsed_time = duration_cast<duration<double>>(t2 - t1);
 	//salvo centroidi fitted
 	for(int i = 0; i<k; i++){
-	   temp_centroids_fitted.row(i) = psi*temp_centroids.row(i);
+//	   temp_centroids_fitted.row(i) = psi*temp_centroids.row(i);
+	   temp_centroids_fitted.row(i) = (psi * temp_centroids.row(i).transpose()).transpose();
 	}
       std::string kmeans_type = "kmeans";
       std::ostringstream ss;

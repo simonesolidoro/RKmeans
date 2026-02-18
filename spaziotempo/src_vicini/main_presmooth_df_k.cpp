@@ -57,15 +57,15 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
-  lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
+  lambda = {3.16228e-08, 3.16228e-08}; // regularization parameter for RKMeans
 
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
   lambda_2d.resize(16,2);
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -11.0 + 0.25 * i);
-      lambda_2d(i,1) = std::pow(10, -11.0 + 0.25 * i);
+      lambda_2d(i,0) = std::pow(10, -10 + 0.25 * i);
+      lambda_2d(i,1) = std::pow(10, -10 + 0.25 * i);
   }
 
 
@@ -114,7 +114,8 @@ std::cout<<"caricati dati "<<std::endl;
 
   std::vector<int> manual_ids;
   for (std::size_t i = 0; i < k; ++i) {
-    manual_ids.push_back(static_cast<int>(i)); // * n_obs_per_clust));
+//    manual_ids.push_back(static_cast<int>(i)); // * n_obs_per_clust));
+    manual_ids.push_back(static_cast<int>(i * n_obs_per_clust));
   }
   ManualInitPolicy init_manual(manual_ids);
 
@@ -125,9 +126,10 @@ std::cout<<"caricati dati "<<std::endl;
 std::cout<<"creati spazi, dist and init"<<std::endl;
 
 
-// kmenas regolarizzato su dataset originale (distanza ST)
   {
-    for (unsigned n = 0; n < N; ++n) {
+std::vector<int> data = {0,1,4};
+    //for (unsigned n = 0; n < N; ++n) {
+    for(auto n: data){
 //std::cout<<"crea file mem centr"<<std::endl;
       std::string out_memb_file = output_dir + "2d_st_presmooth_df_k/" + curve_types[0] + "/memberships"+ "_" + std::to_string(n) + ".csv";
       std::string out_cent_file = output_dir + "2d_st_presmooth_df_k/" + curve_types[0] + "/centroids"+ "_" + std::to_string(n) + ".csv";

@@ -1,0 +1,608 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 10
+n_clust:         3
+N:               3
+seed:            42
+create directory per output
+11 1
+caricati dati 
+creati spazi, dist and init
+chiamata kmeans gcv
+regolarizza centroidi iniziali
+Optimal lambda for cluster 0: 1.58489e-07
+Optimal lambda for cluster 1: 1.99526e-07
+Optimal lambda for cluster 2: 1.58489e-07
+step assegnazione it0
+distanza ck:0 i:0 vale=1.92176 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.29433 , best dist:1.92176
+distanza ck:2 i:0 vale=2.37517 , best dist:1.92176
+distanza ck:0 i:1 vale=2.26704 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.30378 , best dist:2.26704
+distanza ck:2 i:1 vale=2.39037 , best dist:2.26704
+distanza ck:0 i:2 vale=2.26563 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.30958 , best dist:2.26563
+distanza ck:2 i:2 vale=2.39578 , best dist:2.26563
+distanza ck:0 i:3 vale=2.26936 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.27999 , best dist:2.26936
+distanza ck:2 i:3 vale=2.33894 , best dist:2.26936
+distanza ck:0 i:4 vale=2.23175 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.29333 , best dist:2.23175
+distanza ck:2 i:4 vale=2.34961 , best dist:2.23175
+distanza ck:0 i:5 vale=2.23568 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.27506 , best dist:2.23568
+distanza ck:2 i:5 vale=2.35444 , best dist:2.23568
+distanza ck:0 i:6 vale=2.24633 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.28755 , best dist:2.24633
+distanza ck:2 i:6 vale=2.36125 , best dist:2.24633
+distanza ck:0 i:7 vale=2.25709 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.29297 , best dist:2.25709
+distanza ck:2 i:7 vale=2.36965 , best dist:2.25709
+distanza ck:0 i:8 vale=2.24846 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.27659 , best dist:2.24846
+distanza ck:2 i:8 vale=2.35348 , best dist:2.24846
+distanza ck:0 i:9 vale=2.2609 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.30998 , best dist:2.2609
+distanza ck:2 i:9 vale=2.38148 , best dist:2.2609
+distanza ck:0 i:10 vale=2.28273 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=1.94098 , best dist:2.28273
+distanza ck:2 i:10 vale=2.27948 , best dist:1.94098
+distanza ck:0 i:11 vale=2.26409 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.2296 , best dist:2.26409
+distanza ck:2 i:11 vale=2.26132 , best dist:2.2296
+distanza ck:0 i:12 vale=2.3034 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.28072 , best dist:2.3034
+distanza ck:2 i:12 vale=2.30124 , best dist:2.28072
+distanza ck:0 i:13 vale=2.26445 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.24772 , best dist:2.26445
+distanza ck:2 i:13 vale=2.24887 , best dist:2.24772
+distanza ck:0 i:14 vale=2.30123 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.27446 , best dist:2.30123
+distanza ck:2 i:14 vale=2.28709 , best dist:2.27446
+distanza ck:0 i:15 vale=2.29883 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.26098 , best dist:2.29883
+distanza ck:2 i:15 vale=2.28894 , best dist:2.26098
+distanza ck:0 i:16 vale=2.24912 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.24584 , best dist:2.24912
+distanza ck:2 i:16 vale=2.26187 , best dist:2.24584
+distanza ck:0 i:17 vale=2.29891 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.26359 , best dist:2.29891
+distanza ck:2 i:17 vale=2.27295 , best dist:2.26359
+distanza ck:0 i:18 vale=2.28645 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.277 , best dist:2.28645
+distanza ck:2 i:18 vale=2.29632 , best dist:2.277
+distanza ck:0 i:19 vale=2.28503 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.22641 , best dist:2.28503
+distanza ck:2 i:19 vale=2.25113 , best dist:2.22641
+distanza ck:0 i:20 vale=2.35705 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.27364 , best dist:2.35705
+distanza ck:2 i:20 vale=1.90387 , best dist:2.27364
+distanza ck:0 i:21 vale=2.40568 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.31964 , best dist:2.40568
+distanza ck:2 i:21 vale=2.29642 , best dist:2.31964
+distanza ck:0 i:22 vale=2.38687 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.29845 , best dist:2.38687
+distanza ck:2 i:22 vale=2.25777 , best dist:2.29845
+distanza ck:0 i:23 vale=2.35169 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.28859 , best dist:2.35169
+distanza ck:2 i:23 vale=2.24426 , best dist:2.28859
+distanza ck:0 i:24 vale=2.38102 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.29344 , best dist:2.38102
+distanza ck:2 i:24 vale=2.24851 , best dist:2.29344
+distanza ck:0 i:25 vale=2.38875 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.29369 , best dist:2.38875
+distanza ck:2 i:25 vale=2.28375 , best dist:2.29369
+distanza ck:0 i:26 vale=2.37109 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.27479 , best dist:2.37109
+distanza ck:2 i:26 vale=2.26079 , best dist:2.27479
+distanza ck:0 i:27 vale=2.383 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.29941 , best dist:2.383
+distanza ck:2 i:27 vale=2.25904 , best dist:2.29941
+distanza ck:0 i:28 vale=2.37102 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.28868 , best dist:2.37102
+distanza ck:2 i:28 vale=2.24721 , best dist:2.28868
+distanza ck:0 i:29 vale=2.3558 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.2802 , best dist:2.3558
+distanza ck:2 i:29 vale=2.25056 , best dist:2.2802
+fine step assegnazione it0
+ricalcolo centroidi come medi in it0
+ricalcolati centroidi, fare smoot iter0
+Optimal lambda for cluster 0: 1.25893e-08
+Optimal lambda for cluster 1: 1.25893e-08
+Optimal lambda for cluster 2: 1.25893e-08
+finito smoot centroidi e quindi fine iter0
+membri ad iter0: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 
+step assegnazione it1
+distanza ck:0 i:0 vale=2.05522 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.18732 , best dist:2.05522
+distanza ck:2 i:0 vale=2.30151 , best dist:2.05522
+distanza ck:0 i:1 vale=2.05312 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.2134 , best dist:2.05312
+distanza ck:2 i:1 vale=2.31907 , best dist:2.05312
+distanza ck:0 i:2 vale=2.06188 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.21119 , best dist:2.06188
+distanza ck:2 i:2 vale=2.3272 , best dist:2.06188
+distanza ck:0 i:3 vale=2.04562 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.16701 , best dist:2.04562
+distanza ck:2 i:3 vale=2.2784 , best dist:2.04562
+distanza ck:0 i:4 vale=2.03343 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.16286 , best dist:2.03343
+distanza ck:2 i:4 vale=2.27989 , best dist:2.03343
+distanza ck:0 i:5 vale=2.02332 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.16766 , best dist:2.02332
+distanza ck:2 i:5 vale=2.27947 , best dist:2.02332
+distanza ck:0 i:6 vale=2.03935 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.1876 , best dist:2.03935
+distanza ck:2 i:6 vale=2.28779 , best dist:2.03935
+distanza ck:0 i:7 vale=2.05226 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.18638 , best dist:2.05226
+distanza ck:2 i:7 vale=2.30536 , best dist:2.05226
+distanza ck:0 i:8 vale=2.03445 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.16452 , best dist:2.03445
+distanza ck:2 i:8 vale=2.28482 , best dist:2.03445
+distanza ck:0 i:9 vale=2.04152 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.19048 , best dist:2.04152
+distanza ck:2 i:9 vale=2.29643 , best dist:2.04152
+distanza ck:0 i:10 vale=2.17841 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=2.04291 , best dist:2.17841
+distanza ck:2 i:10 vale=2.17519 , best dist:2.04291
+distanza ck:0 i:11 vale=2.16456 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.02288 , best dist:2.16456
+distanza ck:2 i:11 vale=2.15468 , best dist:2.02288
+distanza ck:0 i:12 vale=2.20272 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.06082 , best dist:2.20272
+distanza ck:2 i:12 vale=2.19751 , best dist:2.06082
+distanza ck:0 i:13 vale=2.1649 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.01667 , best dist:2.1649
+distanza ck:2 i:13 vale=2.14092 , best dist:2.01667
+distanza ck:0 i:14 vale=2.18923 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.04079 , best dist:2.18923
+distanza ck:2 i:14 vale=2.17587 , best dist:2.04079
+distanza ck:0 i:15 vale=2.17488 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.02808 , best dist:2.17488
+distanza ck:2 i:15 vale=2.15326 , best dist:2.02808
+distanza ck:0 i:16 vale=2.16059 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.03513 , best dist:2.16059
+distanza ck:2 i:16 vale=2.177 , best dist:2.03513
+distanza ck:0 i:17 vale=2.19116 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.0598 , best dist:2.19116
+distanza ck:2 i:17 vale=2.1855 , best dist:2.0598
+distanza ck:0 i:18 vale=2.19688 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.06204 , best dist:2.19688
+distanza ck:2 i:18 vale=2.19587 , best dist:2.06204
+distanza ck:0 i:19 vale=2.17718 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.02845 , best dist:2.17718
+distanza ck:2 i:19 vale=2.1474 , best dist:2.02845
+distanza ck:0 i:20 vale=2.27262 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.15723 , best dist:2.27262
+distanza ck:2 i:20 vale=2.03498 , best dist:2.15723
+distanza ck:0 i:21 vale=2.32138 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.19601 , best dist:2.32138
+distanza ck:2 i:21 vale=2.07446 , best dist:2.19601
+distanza ck:0 i:22 vale=2.30955 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.17734 , best dist:2.30955
+distanza ck:2 i:22 vale=2.03717 , best dist:2.17734
+distanza ck:0 i:23 vale=2.29139 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.17573 , best dist:2.29139
+distanza ck:2 i:23 vale=2.04257 , best dist:2.17573
+distanza ck:0 i:24 vale=2.30481 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.18045 , best dist:2.30481
+distanza ck:2 i:24 vale=2.05116 , best dist:2.18045
+distanza ck:0 i:25 vale=2.30116 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.18846 , best dist:2.30116
+distanza ck:2 i:25 vale=2.05815 , best dist:2.18846
+distanza ck:0 i:26 vale=2.2977 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.17018 , best dist:2.2977
+distanza ck:2 i:26 vale=2.0407 , best dist:2.17018
+distanza ck:0 i:27 vale=2.3066 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.1731 , best dist:2.3066
+distanza ck:2 i:27 vale=2.03978 , best dist:2.1731
+distanza ck:0 i:28 vale=2.29503 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.17143 , best dist:2.29503
+distanza ck:2 i:28 vale=2.03824 , best dist:2.17143
+distanza ck:0 i:29 vale=2.28314 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.17778 , best dist:2.28314
+distanza ck:2 i:29 vale=2.04432 , best dist:2.17778
+fine step assegnazione it1
+2d_st_regk/vicini_0: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):239.107s
+chiamata kmeans gcv
+regolarizza centroidi iniziali
+Optimal lambda for cluster 0: 1.99526e-07
+Optimal lambda for cluster 1: 1.99526e-07
+Optimal lambda for cluster 2: 1.99526e-07
+step assegnazione it0
+distanza ck:0 i:0 vale=1.9361 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.29021 , best dist:1.9361
+distanza ck:2 i:0 vale=2.35038 , best dist:1.9361
+distanza ck:0 i:1 vale=2.27427 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.33634 , best dist:2.27427
+distanza ck:2 i:1 vale=2.41362 , best dist:2.27427
+distanza ck:0 i:2 vale=2.26187 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.31842 , best dist:2.26187
+distanza ck:2 i:2 vale=2.38643 , best dist:2.26187
+distanza ck:0 i:3 vale=2.25869 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.30392 , best dist:2.25869
+distanza ck:2 i:3 vale=2.37703 , best dist:2.25869
+distanza ck:0 i:4 vale=2.22671 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.25791 , best dist:2.22671
+distanza ck:2 i:4 vale=2.33923 , best dist:2.22671
+distanza ck:0 i:5 vale=2.26412 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.31276 , best dist:2.26412
+distanza ck:2 i:5 vale=2.38069 , best dist:2.26412
+distanza ck:0 i:6 vale=2.2635 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.29792 , best dist:2.2635
+distanza ck:2 i:6 vale=2.4003 , best dist:2.2635
+distanza ck:0 i:7 vale=2.24024 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.28858 , best dist:2.24024
+distanza ck:2 i:7 vale=2.36969 , best dist:2.24024
+distanza ck:0 i:8 vale=2.23748 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.28014 , best dist:2.23748
+distanza ck:2 i:8 vale=2.34608 , best dist:2.23748
+distanza ck:0 i:9 vale=2.27882 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.32132 , best dist:2.27882
+distanza ck:2 i:9 vale=2.38841 , best dist:2.27882
+distanza ck:0 i:10 vale=2.31404 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=1.96397 , best dist:2.31404
+distanza ck:2 i:10 vale=2.3046 , best dist:1.96397
+distanza ck:0 i:11 vale=2.31529 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.27625 , best dist:2.31529
+distanza ck:2 i:11 vale=2.29709 , best dist:2.27625
+distanza ck:0 i:12 vale=2.31808 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.28253 , best dist:2.31808
+distanza ck:2 i:12 vale=2.31693 , best dist:2.28253
+distanza ck:0 i:13 vale=2.28547 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.25269 , best dist:2.28547
+distanza ck:2 i:13 vale=2.26071 , best dist:2.25269
+distanza ck:0 i:14 vale=2.26708 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.2326 , best dist:2.26708
+distanza ck:2 i:14 vale=2.26836 , best dist:2.2326
+distanza ck:0 i:15 vale=2.28688 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.25231 , best dist:2.28688
+distanza ck:2 i:15 vale=2.29174 , best dist:2.25231
+distanza ck:0 i:16 vale=2.29083 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.26041 , best dist:2.29083
+distanza ck:2 i:16 vale=2.30153 , best dist:2.26041
+distanza ck:0 i:17 vale=2.31266 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.28358 , best dist:2.31266
+distanza ck:2 i:17 vale=2.31339 , best dist:2.28358
+distanza ck:0 i:18 vale=2.342 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.28474 , best dist:2.342
+distanza ck:2 i:18 vale=2.29826 , best dist:2.28474
+distanza ck:0 i:19 vale=2.27936 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.23772 , best dist:2.27936
+distanza ck:2 i:19 vale=2.28566 , best dist:2.23772
+distanza ck:0 i:20 vale=2.35643 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.28158 , best dist:2.35643
+distanza ck:2 i:20 vale=1.94638 , best dist:2.28158
+distanza ck:0 i:21 vale=2.37393 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.31006 , best dist:2.37393
+distanza ck:2 i:21 vale=2.26474 , best dist:2.31006
+distanza ck:0 i:22 vale=2.37226 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.29288 , best dist:2.37226
+distanza ck:2 i:22 vale=2.25849 , best dist:2.29288
+distanza ck:0 i:23 vale=2.39855 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.32844 , best dist:2.39855
+distanza ck:2 i:23 vale=2.2842 , best dist:2.32844
+distanza ck:0 i:24 vale=2.37001 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.28478 , best dist:2.37001
+distanza ck:2 i:24 vale=2.25227 , best dist:2.28478
+distanza ck:0 i:25 vale=2.36182 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.28734 , best dist:2.36182
+distanza ck:2 i:25 vale=2.23677 , best dist:2.28734
+distanza ck:0 i:26 vale=2.40565 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.29605 , best dist:2.40565
+distanza ck:2 i:26 vale=2.25692 , best dist:2.29605
+distanza ck:0 i:27 vale=2.37304 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.29106 , best dist:2.37304
+distanza ck:2 i:27 vale=2.26601 , best dist:2.29106
+distanza ck:0 i:28 vale=2.3614 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.27756 , best dist:2.3614
+distanza ck:2 i:28 vale=2.24846 , best dist:2.27756
+distanza ck:0 i:29 vale=2.39035 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.30226 , best dist:2.39035
+distanza ck:2 i:29 vale=2.28285 , best dist:2.30226
+fine step assegnazione it0
+ricalcolo centroidi come medi in it0
+ricalcolati centroidi, fare smoot iter0
+Optimal lambda for cluster 0: 1.58489e-08
+Optimal lambda for cluster 1: 1.25893e-08
+Optimal lambda for cluster 2: 1.25893e-08
+finito smoot centroidi e quindi fine iter0
+membri ad iter0: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 
+step assegnazione it1
+distanza ck:0 i:0 vale=2.03881 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.18492 , best dist:2.03881
+distanza ck:2 i:0 vale=2.28913 , best dist:2.03881
+distanza ck:0 i:1 vale=2.08653 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.2182 , best dist:2.08653
+distanza ck:2 i:1 vale=2.32092 , best dist:2.08653
+distanza ck:0 i:2 vale=2.06646 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.19627 , best dist:2.06646
+distanza ck:2 i:2 vale=2.30399 , best dist:2.06646
+distanza ck:0 i:3 vale=2.06502 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.18651 , best dist:2.06502
+distanza ck:2 i:3 vale=2.29419 , best dist:2.06502
+distanza ck:0 i:4 vale=2.0271 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.14397 , best dist:2.0271
+distanza ck:2 i:4 vale=2.25319 , best dist:2.0271
+distanza ck:0 i:5 vale=2.05552 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.18867 , best dist:2.05552
+distanza ck:2 i:5 vale=2.30169 , best dist:2.05552
+distanza ck:0 i:6 vale=2.06914 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.20512 , best dist:2.06914
+distanza ck:2 i:6 vale=2.32025 , best dist:2.06914
+distanza ck:0 i:7 vale=2.03642 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.17218 , best dist:2.03642
+distanza ck:2 i:7 vale=2.2855 , best dist:2.03642
+distanza ck:0 i:8 vale=2.04552 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.174 , best dist:2.04552
+distanza ck:2 i:8 vale=2.26407 , best dist:2.04552
+distanza ck:0 i:9 vale=2.07865 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.20972 , best dist:2.07865
+distanza ck:2 i:9 vale=2.30982 , best dist:2.07865
+distanza ck:0 i:10 vale=2.21138 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=2.06436 , best dist:2.21138
+distanza ck:2 i:10 vale=2.20495 , best dist:2.06436
+distanza ck:0 i:11 vale=2.1981 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.06461 , best dist:2.1981
+distanza ck:2 i:11 vale=2.19357 , best dist:2.06461
+distanza ck:0 i:12 vale=2.20151 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.06685 , best dist:2.20151
+distanza ck:2 i:12 vale=2.20109 , best dist:2.06685
+distanza ck:0 i:13 vale=2.18948 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.04901 , best dist:2.18948
+distanza ck:2 i:13 vale=2.15974 , best dist:2.04901
+distanza ck:0 i:14 vale=2.1624 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.02946 , best dist:2.1624
+distanza ck:2 i:14 vale=2.15981 , best dist:2.02946
+distanza ck:0 i:15 vale=2.17597 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.03835 , best dist:2.17597
+distanza ck:2 i:15 vale=2.16794 , best dist:2.03835
+distanza ck:0 i:16 vale=2.18376 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.05819 , best dist:2.18376
+distanza ck:2 i:16 vale=2.20785 , best dist:2.05819
+distanza ck:0 i:17 vale=2.20253 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.0726 , best dist:2.20253
+distanza ck:2 i:17 vale=2.20243 , best dist:2.0726
+distanza ck:0 i:18 vale=2.21851 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.06355 , best dist:2.21851
+distanza ck:2 i:18 vale=2.17416 , best dist:2.06355
+distanza ck:0 i:19 vale=2.17027 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.03751 , best dist:2.17027
+distanza ck:2 i:19 vale=2.18357 , best dist:2.03751
+distanza ck:0 i:20 vale=2.2843 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.16598 , best dist:2.2843
+distanza ck:2 i:20 vale=2.04064 , best dist:2.16598
+distanza ck:0 i:21 vale=2.28881 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.18795 , best dist:2.28881
+distanza ck:2 i:21 vale=2.05491 , best dist:2.18795
+distanza ck:0 i:22 vale=2.2962 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.18648 , best dist:2.2962
+distanza ck:2 i:22 vale=2.05316 , best dist:2.18648
+distanza ck:0 i:23 vale=2.31175 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.20531 , best dist:2.31175
+distanza ck:2 i:23 vale=2.06871 , best dist:2.20531
+distanza ck:0 i:24 vale=2.28879 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.16963 , best dist:2.28879
+distanza ck:2 i:24 vale=2.04652 , best dist:2.16963
+distanza ck:0 i:25 vale=2.29996 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.18885 , best dist:2.29996
+distanza ck:2 i:25 vale=2.04415 , best dist:2.18885
+distanza ck:0 i:26 vale=2.31009 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.18315 , best dist:2.31009
+distanza ck:2 i:26 vale=2.06254 , best dist:2.18315
+distanza ck:0 i:27 vale=2.2853 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.17726 , best dist:2.2853
+distanza ck:2 i:27 vale=2.05243 , best dist:2.17726
+distanza ck:0 i:28 vale=2.27406 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.15966 , best dist:2.27406
+distanza ck:2 i:28 vale=2.0318 , best dist:2.15966
+distanza ck:0 i:29 vale=2.29917 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.19501 , best dist:2.29917
+distanza ck:2 i:29 vale=2.06841 , best dist:2.19501
+fine step assegnazione it1
+2d_st_regk/vicini_1: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):229.514s
+chiamata kmeans gcv
+regolarizza centroidi iniziali
+Optimal lambda for cluster 0: 1.58489e-07
+Optimal lambda for cluster 1: 1.99526e-07
+Optimal lambda for cluster 2: 1.99526e-07
+step assegnazione it0
+distanza ck:0 i:0 vale=1.91992 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.30801 , best dist:1.91992
+distanza ck:2 i:0 vale=2.39178 , best dist:1.91992
+distanza ck:0 i:1 vale=2.26162 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.29065 , best dist:2.26162
+distanza ck:2 i:1 vale=2.39049 , best dist:2.26162
+distanza ck:0 i:2 vale=2.26119 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.28361 , best dist:2.26119
+distanza ck:2 i:2 vale=2.36249 , best dist:2.26119
+distanza ck:0 i:3 vale=2.25929 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.27149 , best dist:2.25929
+distanza ck:2 i:3 vale=2.37685 , best dist:2.25929
+distanza ck:0 i:4 vale=2.28775 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.31799 , best dist:2.28775
+distanza ck:2 i:4 vale=2.39205 , best dist:2.28775
+distanza ck:0 i:5 vale=2.21923 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.25976 , best dist:2.21923
+distanza ck:2 i:5 vale=2.34663 , best dist:2.21923
+distanza ck:0 i:6 vale=2.23023 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.25569 , best dist:2.23023
+distanza ck:2 i:6 vale=2.3424 , best dist:2.23023
+distanza ck:0 i:7 vale=2.24864 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.274 , best dist:2.24864
+distanza ck:2 i:7 vale=2.37865 , best dist:2.24864
+distanza ck:0 i:8 vale=2.26628 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.28963 , best dist:2.26628
+distanza ck:2 i:8 vale=2.37732 , best dist:2.26628
+distanza ck:0 i:9 vale=2.24821 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.27455 , best dist:2.24821
+distanza ck:2 i:9 vale=2.35729 , best dist:2.24821
+distanza ck:0 i:10 vale=2.30103 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=1.95633 , best dist:2.30103
+distanza ck:2 i:10 vale=2.28373 , best dist:1.95633
+distanza ck:0 i:11 vale=2.28706 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.26206 , best dist:2.28706
+distanza ck:2 i:11 vale=2.2911 , best dist:2.26206
+distanza ck:0 i:12 vale=2.30905 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.2603 , best dist:2.30905
+distanza ck:2 i:12 vale=2.28915 , best dist:2.2603
+distanza ck:0 i:13 vale=2.28142 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.2293 , best dist:2.28142
+distanza ck:2 i:13 vale=2.27298 , best dist:2.2293
+distanza ck:0 i:14 vale=2.30539 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.24129 , best dist:2.30539
+distanza ck:2 i:14 vale=2.25878 , best dist:2.24129
+distanza ck:0 i:15 vale=2.27834 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.25369 , best dist:2.27834
+distanza ck:2 i:15 vale=2.29101 , best dist:2.25369
+distanza ck:0 i:16 vale=2.30816 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.28616 , best dist:2.30816
+distanza ck:2 i:16 vale=2.29285 , best dist:2.28616
+distanza ck:0 i:17 vale=2.32911 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.30117 , best dist:2.32911
+distanza ck:2 i:17 vale=2.32312 , best dist:2.30117
+distanza ck:0 i:18 vale=2.29087 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.25234 , best dist:2.29087
+distanza ck:2 i:18 vale=2.28798 , best dist:2.25234
+distanza ck:0 i:19 vale=2.30263 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.24737 , best dist:2.30263
+distanza ck:2 i:19 vale=2.25906 , best dist:2.24737
+distanza ck:0 i:20 vale=2.37277 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.26454 , best dist:2.37277
+distanza ck:2 i:20 vale=1.9327 , best dist:2.26454
+distanza ck:0 i:21 vale=2.39775 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.31377 , best dist:2.39775
+distanza ck:2 i:21 vale=2.27254 , best dist:2.31377
+distanza ck:0 i:22 vale=2.4183 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.31893 , best dist:2.4183
+distanza ck:2 i:22 vale=2.28191 , best dist:2.31893
+distanza ck:0 i:23 vale=2.37876 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.29553 , best dist:2.37876
+distanza ck:2 i:23 vale=2.25401 , best dist:2.29553
+distanza ck:0 i:24 vale=2.37691 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.28382 , best dist:2.37691
+distanza ck:2 i:24 vale=2.24918 , best dist:2.28382
+distanza ck:0 i:25 vale=2.38574 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.29162 , best dist:2.38574
+distanza ck:2 i:25 vale=2.24909 , best dist:2.29162
+distanza ck:0 i:26 vale=2.39874 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.2992 , best dist:2.39874
+distanza ck:2 i:26 vale=2.25046 , best dist:2.2992
+distanza ck:0 i:27 vale=2.35321 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.28281 , best dist:2.35321
+distanza ck:2 i:27 vale=2.23119 , best dist:2.28281
+distanza ck:0 i:28 vale=2.36779 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.29344 , best dist:2.36779
+distanza ck:2 i:28 vale=2.24994 , best dist:2.29344
+distanza ck:0 i:29 vale=2.39844 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.2891 , best dist:2.39844
+distanza ck:2 i:29 vale=2.23125 , best dist:2.2891
+fine step assegnazione it0
+ricalcolo centroidi come medi in it0
+ricalcolati centroidi, fare smoot iter0
+Optimal lambda for cluster 0: 1.25893e-08
+Optimal lambda for cluster 1: 1.25893e-08
+Optimal lambda for cluster 2: 1.25893e-08
+finito smoot centroidi e quindi fine iter0
+membri ad iter0: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 2 , 
+step assegnazione it1
+distanza ck:0 i:0 vale=2.05892 , best dist:1.79769e+308
+distanza ck:1 i:0 vale=2.20062 , best dist:2.05892
+distanza ck:2 i:0 vale=2.31285 , best dist:2.05892
+distanza ck:0 i:1 vale=2.05174 , best dist:1.79769e+308
+distanza ck:1 i:1 vale=2.16752 , best dist:2.05174
+distanza ck:2 i:1 vale=2.29473 , best dist:2.05174
+distanza ck:0 i:2 vale=2.05559 , best dist:1.79769e+308
+distanza ck:1 i:2 vale=2.18496 , best dist:2.05559
+distanza ck:2 i:2 vale=2.29302 , best dist:2.05559
+distanza ck:0 i:3 vale=2.04356 , best dist:1.79769e+308
+distanza ck:1 i:3 vale=2.17521 , best dist:2.04356
+distanza ck:2 i:3 vale=2.30119 , best dist:2.04356
+distanza ck:0 i:4 vale=2.06993 , best dist:1.79769e+308
+distanza ck:1 i:4 vale=2.20329 , best dist:2.06993
+distanza ck:2 i:4 vale=2.31623 , best dist:2.06993
+distanza ck:0 i:5 vale=2.03701 , best dist:1.79769e+308
+distanza ck:1 i:5 vale=2.1676 , best dist:2.03701
+distanza ck:2 i:5 vale=2.28249 , best dist:2.03701
+distanza ck:0 i:6 vale=2.02922 , best dist:1.79769e+308
+distanza ck:1 i:6 vale=2.15784 , best dist:2.02922
+distanza ck:2 i:6 vale=2.27063 , best dist:2.02922
+distanza ck:0 i:7 vale=2.0434 , best dist:1.79769e+308
+distanza ck:1 i:7 vale=2.18268 , best dist:2.0434
+distanza ck:2 i:7 vale=2.304 , best dist:2.0434
+distanza ck:0 i:8 vale=2.04435 , best dist:1.79769e+308
+distanza ck:1 i:8 vale=2.17686 , best dist:2.04435
+distanza ck:2 i:8 vale=2.31388 , best dist:2.04435
+distanza ck:0 i:9 vale=2.03662 , best dist:1.79769e+308
+distanza ck:1 i:9 vale=2.16829 , best dist:2.03662
+distanza ck:2 i:9 vale=2.28359 , best dist:2.03662
+distanza ck:0 i:10 vale=2.17925 , best dist:1.79769e+308
+distanza ck:1 i:10 vale=2.04775 , best dist:2.17925
+distanza ck:2 i:10 vale=2.19103 , best dist:2.04775
+distanza ck:0 i:11 vale=2.17923 , best dist:1.79769e+308
+distanza ck:1 i:11 vale=2.0435 , best dist:2.17923
+distanza ck:2 i:11 vale=2.18304 , best dist:2.0435
+distanza ck:0 i:12 vale=2.19909 , best dist:1.79769e+308
+distanza ck:1 i:12 vale=2.06019 , best dist:2.19909
+distanza ck:2 i:12 vale=2.19415 , best dist:2.06019
+distanza ck:0 i:13 vale=2.16673 , best dist:1.79769e+308
+distanza ck:1 i:13 vale=2.04097 , best dist:2.16673
+distanza ck:2 i:13 vale=2.18222 , best dist:2.04097
+distanza ck:0 i:14 vale=2.18329 , best dist:1.79769e+308
+distanza ck:1 i:14 vale=2.03929 , best dist:2.18329
+distanza ck:2 i:14 vale=2.15372 , best dist:2.03929
+distanza ck:0 i:15 vale=2.16574 , best dist:1.79769e+308
+distanza ck:1 i:15 vale=2.0485 , best dist:2.16574
+distanza ck:2 i:15 vale=2.17988 , best dist:2.0485
+distanza ck:0 i:16 vale=2.2051 , best dist:1.79769e+308
+distanza ck:1 i:16 vale=2.06773 , best dist:2.2051
+distanza ck:2 i:16 vale=2.21259 , best dist:2.06773
+distanza ck:0 i:17 vale=2.21592 , best dist:1.79769e+308
+distanza ck:1 i:17 vale=2.07536 , best dist:2.21592
+distanza ck:2 i:17 vale=2.20396 , best dist:2.07536
+distanza ck:0 i:18 vale=2.17276 , best dist:1.79769e+308
+distanza ck:1 i:18 vale=2.05535 , best dist:2.17276
+distanza ck:2 i:18 vale=2.19288 , best dist:2.05535
+distanza ck:0 i:19 vale=2.16774 , best dist:1.79769e+308
+distanza ck:1 i:19 vale=2.03268 , best dist:2.16774
+distanza ck:2 i:19 vale=2.17406 , best dist:2.03268
+distanza ck:0 i:20 vale=2.277 , best dist:1.79769e+308
+distanza ck:1 i:20 vale=2.15478 , best dist:2.277
+distanza ck:2 i:20 vale=2.02685 , best dist:2.15478
+distanza ck:0 i:21 vale=2.31149 , best dist:1.79769e+308
+distanza ck:1 i:21 vale=2.19569 , best dist:2.31149
+distanza ck:2 i:21 vale=2.05448 , best dist:2.19569
+distanza ck:0 i:22 vale=2.32157 , best dist:1.79769e+308
+distanza ck:1 i:22 vale=2.2087 , best dist:2.32157
+distanza ck:2 i:22 vale=2.07728 , best dist:2.2087
+distanza ck:0 i:23 vale=2.29062 , best dist:1.79769e+308
+distanza ck:1 i:23 vale=2.17989 , best dist:2.29062
+distanza ck:2 i:23 vale=2.05326 , best dist:2.17989
+distanza ck:0 i:24 vale=2.29427 , best dist:1.79769e+308
+distanza ck:1 i:24 vale=2.18765 , best dist:2.29427
+distanza ck:2 i:24 vale=2.05508 , best dist:2.18765
+distanza ck:0 i:25 vale=2.30436 , best dist:1.79769e+308
+distanza ck:1 i:25 vale=2.18025 , best dist:2.30436
+distanza ck:2 i:25 vale=2.03926 , best dist:2.18025
+distanza ck:0 i:26 vale=2.31345 , best dist:1.79769e+308
+distanza ck:1 i:26 vale=2.18293 , best dist:2.31345
+distanza ck:2 i:26 vale=2.0404 , best dist:2.18293
+distanza ck:0 i:27 vale=2.27893 , best dist:1.79769e+308
+distanza ck:1 i:27 vale=2.1713 , best dist:2.27893
+distanza ck:2 i:27 vale=2.0311 , best dist:2.1713
+distanza ck:0 i:28 vale=2.29263 , best dist:1.79769e+308
+distanza ck:1 i:28 vale=2.17578 , best dist:2.29263
+distanza ck:2 i:28 vale=2.04969 , best dist:2.17578
+distanza ck:0 i:29 vale=2.30997 , best dist:1.79769e+308
+distanza ck:1 i:29 vale=2.19136 , best dist:2.30997
+distanza ck:2 i:29 vale=2.0478 , best dist:2.19136
+fine step assegnazione it1
+2d_st_regk/vicini_2: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):231.864s

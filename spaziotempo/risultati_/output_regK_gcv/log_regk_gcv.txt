@@ -1,0 +1,128 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 20
+n_clust:         2
+N:               10
+seed:            42
+create directory per output
+11 1
+caricati dati 
+creati spazi, dist and init
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 1 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_0: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):156.09s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 1.77828e-08
+Optimal lambda for cluster 1: 1.77828e-09
+membri ad iter0: 
+0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_1: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):152.939s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 5.62341e-09
+Optimal lambda for cluster 1: 1.77828e-09
+membri ad iter0: 
+0 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_2: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):158.993s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 1.77828e-09
+Optimal lambda for cluster 1: 5.62341e-09
+membri ad iter0: 
+0 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
+2d_st_regk/vicini_3: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):157.97s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 0 , 1 , 1 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 1 , 1 , 0 , 0 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 5.62341e-09
+membri ad iter1: 
+0 , 1 , 0 , 1 , 1 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 1 , 1 , 0 , 0 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter2: 
+1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
+2d_st_regk/vicini_4: kmeans execution completed in 3 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):209.254s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 0 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 0 , 1 , 1 , 0 , 0 , 0 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
+2d_st_regk/vicini_5: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):156.741s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 5.62341e-09
+Optimal lambda for cluster 1: 1.77828e-09
+membri ad iter0: 
+0 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 0 , 1 , 0 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_6: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):172.865s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_7: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):169.703s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 1 , 0 , 1 , 0 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
+2d_st_regk/vicini_8: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):166.218s
+Optimal lambda for cluster 0: 5.62341e-08
+Optimal lambda for cluster 1: 5.62341e-08
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter0: 
+0 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 , 1 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 0 , 0 , 1 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 0 , 1 , 
+Optimal lambda for cluster 0: 3.16228e-09
+Optimal lambda for cluster 1: 3.16228e-09
+membri ad iter1: 
+0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 
+2d_st_regk/vicini_9: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):168.419s

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -l select=1:ncpus=28,walltime=24:00:00
+#PBS -j oe
+#PBS -N smoothing_mono
+
+FILENAME="src_vicini/main_smoothing_mono"
+FILENAME_exe="src_vicini/main_smoothing_mono"
+
+cd "${PBS_O_WORKDIR}"
+
+# clean log
+rm -f log_smoothing_mono.txt compile_smoothing_mono.txt
+echo "cleaning log files..." >> log_smoothing_mono.txt
+
+# init spack
+echo "loading spack" >> log_smoothing_mono.txt
+if [ ! -f "${HOME}/spack.sh" ]; then
+    echo "spack configuration file not found" >> log_smoothing_mono.txt
+    exit 1
+fi
+source "${HOME}/spack.sh" >> log_smoothing_mono.txt 2>&1
+
+echo "loading fdapde_devel environment" >> log_smoothing_mono.txt
+spack env activate fdapde_devel >> log_smoothing_mono.txt 2>&1
+
+# check packages
+EIGEN_LOC="$(spack location -i eigen)"
+if [ -z "$EIGEN_LOC" ]; then
+    echo "Eigen dependency not found" >> log_smoothing_mono.txt
+    exit 1
+fi
+echo "Eigen library found at ${EIGEN_LOC}" >> log_smoothing_mono.txt
+
+# compile
+echo "compiling..." >> log_smoothing_mono.txt
+g++ -o $FILENAME_exe $FILENAME.cpp \
+    -I../fdaPDE-cpp \
+    -I../fdaPDE-cpp/fdaPDE/core \
+    -I"$EIGEN_LOC/include/eigen3" \
+    -march=native -O2 -std=c++20 >> compile_smoothing_mono.txt 2>&1
+
+# run
+echo "launching executable..." >> log_smoothing_mono.txt
+./$FILENAME_exe >> log_smoothing_mono.txt 2>&1

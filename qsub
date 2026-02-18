@@ -42,4 +42,4 @@ g++ -o $FILENAME $FILENAME.cpp \
 
 # run
 echo "launching executable..." >> log.txt
-./$FILENAME >> log.txt
+./$FILENAME >> log.txt 2>&1

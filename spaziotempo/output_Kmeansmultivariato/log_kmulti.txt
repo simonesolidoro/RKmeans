@@ -1,0 +1,17 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 10
+n_clust:         3
+N:               3
+seed:            42
+create directory per output
+11 1
+caricati dati 
+creati spazi, dist and init
+2d_st_regk/vicini_0: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00583119s
+2d_st_regk/vicini_1: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00281223s
+2d_st_regk/vicini_2: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.0028593s

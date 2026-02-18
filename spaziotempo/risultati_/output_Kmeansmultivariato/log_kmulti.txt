@@ -1,0 +1,24 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 20
+n_clust:         2
+N:               10
+seed:            42
+create directory per output
+11 1
+caricati dati 
+creati spazi, dist and init
+2d_st_regk/vicini_0: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00637369s
+2d_st_regk/vicini_1: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00315494s
+2d_st_regk/vicini_2: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00543855s
+2d_st_regk/vicini_3: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00319721s
+2d_st_regk/vicini_4: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00286257s
+2d_st_regk/vicini_5: kmeans execution completed in 3 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00740102s
+2d_st_regk/vicini_6: kmeans execution completed in 2 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00528236s
+2d_st_regk/vicini_7: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00317122s
+2d_st_regk/vicini_8: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.00334979s
+2d_st_regk/vicini_9: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):0.0030859s

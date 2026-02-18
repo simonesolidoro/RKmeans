@@ -58,15 +58,15 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
-  lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
+  lambda = {3.16228e-08, 3.16228e-08}; // regularization parameter for RKMeans
 
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
   lambda_2d.resize(16,2);
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -11.0 + 0.25 * i);
-      lambda_2d(i,1) = std::pow(10, -11.0 + 0.25 * i);
+      lambda_2d(i,0) = std::pow(10, -9.0 + 0.10 * i);
+      lambda_2d(i,1) = std::pow(10, -9.0 + 0.10 * i);
   }
 
 

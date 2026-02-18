@@ -1,0 +1,33 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+seed: 1859649810
+k: 2
+129
+massa creata
+dist creata
+dist e init creati
+tot oss: 154 dim ogni oss:3244350
+K = 2: run 0 completed in 10 iterations (max=25), time:737.678s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 1 completed in 9 iterations (max=25), time:697.138s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 2 completed in 1 iterations (max=25), time:119.253s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 3 completed in 9 iterations (max=25), time:668.681s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 4 completed in 4 iterations (max=25), time:334.794s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 5 completed in 9 iterations (max=25), time:718.388s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 6 completed in 5 iterations (max=25), time:423.046s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 7 completed in 1 iterations (max=25), time:147.696s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 8 completed in 1 iterations (max=25), time:148.322s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
+K = 2: run 9 completed in 4 iterations (max=25), time:381.69s
+centroids_.rows(): 2,  centroids_.cols(): 3244350
