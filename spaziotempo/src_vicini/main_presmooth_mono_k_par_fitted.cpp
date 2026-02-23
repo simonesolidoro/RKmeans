@@ -28,7 +28,7 @@ namespace fs = std::filesystem;
 int main() {
   std::vector<std::string> curve_types = {
       "vicini"};
-  std::string output_dir = "./output_presmooth_mono_k_par_fitted/";
+  std::string output_dir = "./output_presmooth_mono_fix_1e62e5/";
   std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
@@ -58,7 +58,7 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
- // lambda = {5.62341e-08, 5.62341e-08}; // regularization parameter for RKMeans
+g lambda = {1.00e-06, 2.00e-05}; // regularization parameter for RKMeans
 
   // commentata per test per fare veloce
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
@@ -66,8 +66,8 @@ int main() {
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -8.0 + 0.10 * i);
-      lambda_2d(i,1) = std::pow(10, -8.0 + 0.10 * i);
+      lambda_2d(i,0) = std::pow(10, -7.0 + 0.05 * i);
+      lambda_2d(i,1) = std::pow(10, -7.0 + 0.05 * i);
   }
 /*
    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
