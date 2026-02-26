@@ -27,7 +27,7 @@ namespace fs = std::filesystem;
 int main() {
   std::vector<std::string> curve_types = {
       "vicini"};
-  std::string output_dir = "./output_presmooth_df_fix_1e51e4/";
+  std::string output_dir = "./output_presmooth_fixsub177/";
   std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
@@ -185,7 +185,8 @@ std::cout<<"presmooth obs-"<<s<<" di dataset-"<<n<<std::endl;
 std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
           model.fit(optimizer.optimum()[0],optimizer.optimum()[1]);
           */
-	  model.fit(1.0e-05, 1.0e-04);
+	  //model.fit(5.62341e-07, 5.62341e-07); //
+	  model.fit(1.77828e-07, 1.77828e-07);
           auto f_= model.fitted();
           if(s== 0){
             responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());
@@ -199,7 +200,7 @@ std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]
 
         // RKMeans
         int max_it_ = 15;
-        KMeans rkmeans(responses, dist_2d_st, init_manual, k,
+        KMeans rkmeans(responses_smooth, dist_2d_st, init_manual, k,
                          max_it_, seed);
         rkmeans.run();
         n_iter = rkmeans.n_iterations();
