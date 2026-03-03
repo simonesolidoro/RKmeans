@@ -171,6 +171,9 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
       t1 = high_resolution_clock::now();
 
     Eigen::MatrixXd responses_smooth(responses.rows(),responses.cols());
+    //cache edf
+using edf_cache_t = std::unordered_map<std::array<double, 2>, double, internals::std_array_hash<double, 2>>;
+    edf_cache_t edf_cache;
     for (int s=0 ; s< responses.rows(); s++){
 std::cout<<"presmooth obs-"<<s<<" di dataset-"<<n<<std::endl;
           // load data in geoframe
@@ -179,14 +182,18 @@ std::cout<<"presmooth obs-"<<s<<" di dataset-"<<n<<std::endl;
           l1.load_vec("y", responses.row(s));
           SRPDE model("y ~ f", data,fe_ls_separable_parallel(std::pair {a_2d, F_2d}, 500, 1e-9)); //perche ricrea modello ogni volta e non fa semplicemente update_response ?
           // tolot gcv per risparmio tempo momentaneo
-         /* 
+          
 	  GridSearch<2> optimizer;
-          optimizer.optimize(model.gcv(100, 476813), lambda_2d);
+	  auto m_gcv = model.gcv(edf_cache,100,476813);
+          optimizer.optimize(m_gcv, lambda_2d);
 std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
           model.fit(optimizer.optimum()[0],optimizer.optimum()[1]);
-         */
+         
+	  //aggiorna edf_cache
+	  edf_cache = m_gcv.edf_cache();
+
 	  //model.fit(5.62341e-07, 5.62341e-07); //
-	  model.fit(1.00e-07, 1.00e-07);
+	  //model.fit(1.00e-07, 1.00e-07);
           auto f_= model.fitted();
           if(s== 0){
             responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());
