@@ -766,6 +766,10 @@ private:
   unsigned max_iter_;
   unsigned n_iter_ = 0;
 
+//cache edf
+using edf_cache_t = std::unordered_map<std::array<double, 2>, double, internals::std_array_hash<double, 2>>;
+  edf_cache_t edf_cache;
+  
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_grid_;
 
   std::vector<int> memberships_;
@@ -795,7 +799,7 @@ private:
         // // } else {
         // //   optimizer.optimize(model.gcv(edf_cache, 100, seed), lambda_grid_);
         // // }
-        auto gcv = model.gcv_par(100, seed);
+        auto gcv = model.gcv_par(edf_cache,100, seed);
         optimizer.optimize(fdapde::execution_par,gcv, lambda_grid_);
         // gcv.edf_cache().clear();
         std::cout << "Optimal lambda for cluster " << c << ": " << optimizer.optimum()[0] << "\n";
@@ -804,6 +808,7 @@ private:
         // //   std::cerr << "Warning: Optimal lambda is at the edge of the grid. "
         // //             << "Consider expanding the grid for better results.\n";
         // // }
+	edf_cache = gcv.edf_cache(); //aggiorno membro edf_cache di kmeans. // fatto bene sarebbe aggiornarlo a prima iterazione di kmeans.
         model.fit(optimizer.optimum()[0], optimizer.optimum()[1]);
       }
 

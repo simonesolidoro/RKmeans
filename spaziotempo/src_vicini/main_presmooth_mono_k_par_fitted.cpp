@@ -28,7 +28,7 @@ namespace fs = std::filesystem;
 int main() {
   std::vector<std::string> curve_types = {
       "vicini"};
-  std::string output_dir = "./output_presmooth_mono_fix_1e62e5/";
+  std::string output_dir = "./output_presmooth_mono/";
   std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
@@ -58,7 +58,7 @@ int main() {
   seed = params.seed; // 42; // seed for random number generator
 
   std::optional<std::vector<double>> lambda = std::nullopt;
-g lambda = {1.00e-06, 2.00e-05}; // regularization parameter for RKMeans
+ // lambda = {1.00e-06, 2.00e-05}; // regularization parameter for RKMeans
 
   // commentata per test per fare veloce
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
@@ -66,8 +66,8 @@ g lambda = {1.00e-06, 2.00e-05}; // regularization parameter for RKMeans
 
   // grid da popolare con la griglia dei valori da esplorare
   for(int i =0; i<lambda_2d.rows();++i){
-      lambda_2d(i,0) = std::pow(10, -7.0 + 0.05 * i);
-      lambda_2d(i,1) = std::pow(10, -7.0 + 0.05 * i);
+      lambda_2d(i,0) = std::pow(10, -10.0 + 0.25 * i);
+      lambda_2d(i,1) = std::pow(10, -10.0 + 0.25 * i);
   }
 /*
    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
@@ -171,6 +171,9 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
 
     Eigen::MatrixXd responses_smooth(responses.rows(),responses.cols());
     Eigen::SparseMatrix<double> psi; //per poter passare da f() a fitted()
+//cache edf
+using edf_cache_t = std::unordered_map<std::array<double, 2>, double, internals::std_array_hash<double, 2>>;
+    edf_cache_t edf_cache;
 
     for (int s=0 ; s< responses.rows(); s++){
 std::cout<<"smooth s:"<<s<<std::endl;
@@ -178,13 +181,18 @@ std::cout<<"smooth s:"<<s<<std::endl;
           GeoFrame data(D2, T);
           auto& l1 = data.template insert_scalar_layer<POINT, POINT>("l1", std::pair {MESH_NODES, MESH_NODES});
           l1.load_vec("y", responses.row(s));
-          SRPDE model("y ~ f", data,fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T})); //perche ricrea modello ogni volta e non fa semplicemente update_response ?
-          // tolot gcv per risparmiare tempo
+          SRPDE model("y ~ f", data,fe_ls_separable_mono(std::pair {a_2d, F_2d}, std::pair {a_T, F_T})); 
+	  
           GridSearch<2> optimizer;
-          optimizer.optimize(fdapde::execution_par, model.gcv_par(100, 476813), lambda_2d);
+	  auto m_gcv = model.gcv_par(edf_cache,100,476813);
+          optimizer.optimize(fdapde::execution_par, m_gcv, lambda_2d);
 std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
           model.fit(0,optimizer.optimum()[0],optimizer.optimum()[1]);
-          //model.fit(0,5.62341e-08, 5.62341e-08);
+          
+	  //aggiorna cache di edf
+	  edf_cache = m_gcv.edf_cache();
+
+	  //model.fit(0,5.62341e-07, 5.62341e-07);
           auto f_= model.f();
           if(s== 0){
             responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());

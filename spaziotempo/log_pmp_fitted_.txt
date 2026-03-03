@@ -1,0 +1,80 @@
+cleaning log files...
+loading spack
+loading fdapde_devel environment
+Eigen library found at /home/u10656115/.spack/packages/linux-cascadelake/eigen-3.4.0-hklx4lp26fdlaepysl2vcl6zyvtf5cag
+compiling...
+launching executable...
+n_obs_per_clust: 20
+n_clust:         3
+N:               10
+seed:            42
+create directory per output
+11 1
+caricati dati 
+creati spazi, dist and init
+smooth s:0
+smooth s:1
+smooth s:2
+smooth s:3
+smooth s:4
+smooth s:5
+smooth s:6
+smooth s:7
+smooth s:8
+smooth s:9
+smooth s:10
+smooth s:11
+smooth s:12
+smooth s:13
+smooth s:14
+smooth s:15
+smooth s:16
+smooth s:17
+smooth s:18
+smooth s:19
+smooth s:20
+smooth s:21
+smooth s:22
+smooth s:23
+smooth s:24
+smooth s:25
+smooth s:26
+smooth s:27
+smooth s:28
+smooth s:29
+smooth s:30
+smooth s:31
+smooth s:32
+smooth s:33
+smooth s:34
+smooth s:35
+smooth s:36
+smooth s:37
+smooth s:38
+smooth s:39
+smooth s:40
+smooth s:41
+smooth s:42
+smooth s:43
+smooth s:44
+smooth s:45
+smooth s:46
+smooth s:47
+smooth s:48
+smooth s:49
+smooth s:50
+smooth s:51
+smooth s:52
+smooth s:53
+smooth s:54
+smooth s:55
+smooth s:56
+smooth s:57
+smooth s:58
+smooth s:59
+2d_st_regk/vicini_0: kmeans execution completed in 1 iterations (max=25), time (reg-kmeans jb, distnza ST no Kron):800.767s
+smooth s:0
+smooth s:1
+smooth s:2
+smooth s:3
+smooth s:4

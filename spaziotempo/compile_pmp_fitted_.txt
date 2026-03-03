@@ -1,0 +1,4 @@
+src_vicini/main_presmooth_mono_k_par_fitted.cpp: In function 'int main()':
+src_vicini/main_presmooth_mono_k_par_fitted.cpp:199:25: error: 'class fdapde::SRPDE<fdapde::internals::fe_ls_separable_mono>' has no member named 'get_psi'
+  199 |             psi = model.get_psi();
+      |                         ^~~~~~~

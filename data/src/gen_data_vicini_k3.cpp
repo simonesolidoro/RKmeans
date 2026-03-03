@@ -20,7 +20,7 @@ int main() {
   //unsigned seed = std::random_device{}();
   unsigned seed = 42;
 
-double var = 0.8;
+double var = 0.2;
 double deltat= 0.03;
   unsigned N_st = 10; //10
   unsigned k_st = 3;      // due centroidi temporali

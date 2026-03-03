@@ -28,7 +28,7 @@ namespace fs = std::filesystem;
 int main() {
   std::vector<std::string> curve_types = {
       "vicini"};
-  std::string output_dir = "./output_regK_df_subopt1e81e7/";
+  std::string output_dir = "./output_regK_df/";
   std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
@@ -60,7 +60,7 @@ int main() {
 
   std::optional<std::vector<double>> lambda = std::nullopt;
   // lambda lasciato nullopt così testiamo gcv ad ogni regulirize centroid
-  lambda = {1.00e-08, 1.00e-07}; // regularization parameter for RKMeans
+  //lambda = {1.00e-08, 1.00e-07}; // regularization parameter for RKMeans
 
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic,Eigen::RowMajor> lambda_2d;
   lambda_2d.resize(16,2);

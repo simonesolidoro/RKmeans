@@ -27,7 +27,7 @@ namespace fs = std::filesystem;
 int main() {
   std::vector<std::string> curve_types = {
       "vicini"};
-  std::string output_dir = "./output_presmooth_fixsub177/";
+  std::string output_dir = "./output_presmooth_df/";
   std::string data_dir = "./../data/";
 
   if (fs::exists(output_dir)) {
@@ -179,14 +179,14 @@ std::cout<<"presmooth obs-"<<s<<" di dataset-"<<n<<std::endl;
           l1.load_vec("y", responses.row(s));
           SRPDE model("y ~ f", data,fe_ls_separable_parallel(std::pair {a_2d, F_2d}, 500, 1e-9)); //perche ricrea modello ogni volta e non fa semplicemente update_response ?
           // tolot gcv per risparmio tempo momentaneo
-          /*
+         /* 
 	  GridSearch<2> optimizer;
           optimizer.optimize(model.gcv(100, 476813), lambda_2d);
 std::cout<<"ottimo lambda:"<<optimizer.optimum()[0]<<" "<<optimizer.optimum()[1]<<std::endl;
           model.fit(optimizer.optimum()[0],optimizer.optimum()[1]);
-          */
+         */
 	  //model.fit(5.62341e-07, 5.62341e-07); //
-	  model.fit(1.77828e-07, 1.77828e-07);
+	  model.fit(1.00e-07, 1.00e-07);
           auto f_= model.fitted();
           if(s== 0){
             responses_smooth.resize(responses.rows(),f_.cols()*f_.rows());
