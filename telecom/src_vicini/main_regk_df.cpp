@@ -27,7 +27,7 @@ namespace fs = std::filesystem;
 
 int main() {
 std::cout<<"1"<<std::endl;
-  std::string output_dir = "./output_regK_df_k2/";
+  std::string output_dir = "./output_regK_df_k2_init06/";
   std::string data_dir = "/work/u10656115/data_tesista/";
 
   if (fs::exists(output_dir)) {
@@ -102,10 +102,11 @@ std::cout<<"caricati dati "<<std::endl;
 
   L2Policy_spaziotempo dist_2d_st(R0_2d,R0_2d.rows(),istanti.rows());
 
-  std::vector<int> manual_ids;
-  for (std::size_t i = 0; i < k; ++i) {
+  std::vector<int> manual_ids = {0,6};
+/*  for (std::size_t i = 0; i < k; ++i) {
     manual_ids.push_back(static_cast<int>(i)); // * n_obs_per_clust));
   }
+ */
   ManualInitPolicy init_manual(manual_ids);
 
   std::size_t n_obs = 7;
@@ -130,7 +131,7 @@ std::cout<<"creati spazi, dist and init"<<std::endl;
       file_memb.close();
       file_cent.close();
 
-      Eigen::MatrixXd responses = csv2mat_nuovo_na<double>("/work/u10656115/data_tesista/y.csv",true,true);
+      Eigen::MatrixXd responses = csv2mat_nuovo<double>("/work/u10656115/data_tesista/y_noNA.csv",true,false);
       t1 = high_resolution_clock::now();
 
       unsigned n_iter;

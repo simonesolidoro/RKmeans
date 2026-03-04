@@ -302,7 +302,7 @@ csv2mat_nuovo(const std::string &filename, bool header = false, bool row_idx = f
 //mette colonna a 0 se c'è anche solo un NA, (tanto poi in distanza non influisce e tamto NA pochi)
 template <typename T>
 Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>
-csv2mat_nuovo_na(const std::string &filename,
+csv2mat_nuovo_na_0(const std::string &filename,
                        bool header = false,
                        bool row_idx = false) {
 
@@ -394,6 +394,116 @@ csv2mat_nuovo_na(const std::string &filename,
     } else {
       for (size_t i = 0; i < rows; ++i)
         result(i, j) = temp_data[i][j];
+    }
+  }
+
+  return result;
+}
+
+
+// se coolonna ha un NA mette uguale a colonna precendente
+template <typename T>
+Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>
+csv2mat_nuovo_na(const std::string &filename,
+                 bool header = false,
+                 bool row_idx = false) {
+
+  std::ifstream file(filename);
+  if (!file) throw std::runtime_error("Cannot open file: " + filename);
+
+  auto trim = [](std::string &s) {
+    auto not_space = [](unsigned char ch) { return !std::isspace(ch); };
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), not_space));
+    s.erase(std::find_if(s.rbegin(), s.rend(), not_space).base(), s.end());
+  };
+
+  auto strip_quotes = [](std::string &s) {
+    if (s.size() >= 2 && s.front() == '"' && s.back() == '"')
+      s = s.substr(1, s.size() - 2);
+  };
+
+  auto is_na = [](std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+    return (s == "NA");
+  };
+
+  auto parse_num = [](const std::string &s) -> T {
+    if constexpr (std::is_integral_v<T>)
+      return static_cast<T>(std::stoll(s));
+    else
+      return static_cast<T>(std::stod(s));
+  };
+
+  std::vector<std::vector<T>> temp_data;
+  std::vector<bool> col_has_na;
+
+  std::string line;
+  bool first_line = true;
+
+  while (std::getline(file, line)) {
+
+    if (header && first_line) { first_line = false; continue; }
+    first_line = false;
+
+    if (line.find_first_not_of(" \t\r\n") == std::string::npos) continue;
+
+    std::stringstream ss(line);
+    std::string cell;
+
+    if (row_idx) std::getline(ss, cell, ',');
+
+    std::vector<T> row;
+    size_t col_idx = 0;
+
+    while (std::getline(ss, cell, ',')) {
+
+      trim(cell);
+      strip_quotes(cell);
+      trim(cell);
+
+      if (temp_data.empty())
+        col_has_na.push_back(false);
+
+      if (cell.empty() || is_na(cell)) {
+        row.push_back(T{});            // placeholder
+        col_has_na[col_idx] = true;    // segna che la colonna ha NA
+      } else {
+        try {
+          row.push_back(parse_num(cell));
+        } catch (...) {
+          throw std::runtime_error("CSV parse error in file: " + filename);
+        }
+      }
+
+      ++col_idx;
+    }
+
+    temp_data.push_back(std::move(row));
+  }
+
+  if (temp_data.empty())
+    return Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>();
+
+  size_t rows = temp_data.size();
+  size_t cols = temp_data[0].size();
+
+  Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>
+      result(rows, cols);
+
+  for (size_t j = 0; j < cols; ++j) {
+
+    if (!col_has_na[j]) {
+      // colonna pulita → copia dati originali
+      for (size_t i = 0; i < rows; ++i)
+        result(i, j) = temp_data[i][j];
+
+    } else {
+      // colonna con NA → copia colonna precedente
+      if (j == 0) {
+        result.col(j).setZero();  // se è la prima, fallback a 0
+      } else {
+        result.col(j) = result.col(j - 1);
+      }
     }
   }
 
